@@ -1,6 +1,6 @@
-package org.eamonn.salvage
-package scenes
+package org.eamonnh.salvage.scenes.home
 
+import com.badlogic.gdx.Input.Keys
 import com.badlogic.gdx.InputAdapter
 
 class HomeControl(home: Home) extends InputAdapter {
@@ -19,7 +19,7 @@ class HomeControl(home: Home) extends InputAdapter {
   }
 
   override def keyDown(keycode: Int): Boolean = {
-
+    if(keycode == Keys.SPACE) home.ready = true
     true
   }
 }

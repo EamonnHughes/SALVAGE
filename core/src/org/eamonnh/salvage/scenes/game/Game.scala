@@ -1,23 +1,23 @@
-package org.eamonnh.salvage.scenes
+package org.eamonnh.salvage.scenes.game
 
 import com.badlogic.gdx.InputAdapter
 import com.badlogic.gdx.graphics.g2d.PolygonSpriteBatch
-import org.eamonn.salvage.{Scene, screenUnit}
-import org.eamonn.salvage.scenes.LevelController
+import org.eamonn.salvage.Scene
 import org.eamonnh.salvage.player.{Carc, Player}
 import org.eamonnh.salvage.util.Vec2
 
-class inLevel extends Scene{
+class Game extends Scene{
 
   val player = new Player()
   override def init(): InputAdapter = {
     player.location = Vec2(5, 5)
     player.archetype = Carc()
 
-    new LevelController(this)
+    new GameController(this)
   }
 
   override def update(delta: Float): Option[Scene] = {
+    player.realUpdate(this, delta)
     None
   }
 
