@@ -1,7 +1,7 @@
-package org.eamonnh.salvage.player
+package org.eamonnh.salvage.actors
 
-import org.eamonn.salvage.Salvage.garbage
-import org.eamonn.salvage.util.TextureWrapper
+import org.eamonnh.salvage.Salvage.garbage
+import org.eamonnh.salvage.util.TextureWrapper
 
 trait Archetype {
   var sprite: TextureWrapper

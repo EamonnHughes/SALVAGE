@@ -1,4 +1,4 @@
-package org.eamonn.salvage.util
+package org.eamonnh.salvage.util
 
 import com.badlogic.gdx.utils.Disposable
 

@@ -1,4 +1,4 @@
-package org.eamonn.salvage
+package org.eamonnh.salvage
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Color
@@ -8,8 +8,8 @@ import com.badlogic.gdx.graphics.g2d.{
   GlyphLayout,
   PolygonSpriteBatch
 }
-import org.eamonn.salvage.Geometry._
-import org.eamonn.salvage.util.GarbageCan
+import org.eamonnh.salvage.Geometry._
+import org.eamonnh.salvage.util.GarbageCan
 
 object Text {
   def loadFonts()(implicit garbage: GarbageCan): Unit = {

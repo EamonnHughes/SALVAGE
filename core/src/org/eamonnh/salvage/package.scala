@@ -1,4 +1,4 @@
-package org.eamonn
+package org.eamonnh
 
 import com.badlogic.gdx.Gdx.input
 import com.badlogic.gdx.Input.Peripheral

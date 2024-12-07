@@ -1,4 +1,4 @@
-package org.eamonn.salvage
+package org.eamonnh.salvage
 
 import com.badlogic.gdx.backends.lwjgl3.{
   Lwjgl3Application,
@@ -9,6 +9,6 @@ import com.badlogic.gdx.backends.lwjgl3.{
 object DesktopLauncher extends App {
   val config = new Lwjgl3ApplicationConfiguration
   config.setForegroundFPS(60)
-  config.setWindowedMode(1500, 1000)
+  config.setWindowedMode(2500, 1500)
   new Lwjgl3Application(new Salvage, config)
 }

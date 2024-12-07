@@ -32,7 +32,7 @@ dependencies {
 sourceSets.main.scala.srcDirs = ["src/"]
 sourceSets.main.resources.srcDirs = ["../assets"]
 
-project.ext.mainClassName = "org.eamonn.salvage.DesktopLauncher"
+project.ext.mainClassName = "org.eamonnh.salvage.DesktopLauncher"
 project.ext.assetsDir = new File("../assets")
 
 import org.gradle.internal.os.OperatingSystem

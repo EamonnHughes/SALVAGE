@@ -1,24 +1,20 @@
 package org.eamonnh.salvage.player
 
-import org.eamonnh.salvage.Motile
+import org.eamonnh.salvage.actors.{Archetype, Carc, Engine, Motile, Ship}
 import org.eamonnh.salvage.scenes.game.{Game, GameTriggers}
 import org.eamonnh.salvage.util.Vec2
 
-class Player extends Motile{
-
-  override var location: Vec2 = _
-  var archetype: Archetype = _
-  var speed = Vec2(10, 20)
-
-  override def sprite = archetype.sprite
-
-  override var size: Vec2 = Vec2(4, 4)
-
+class Player extends Ship {
+  override def sprite = arch.sprite
   override def update(game: Game, delta: Float): Unit ={
-    if(GameTriggers.playerMovingUp) velocity.y = speed.y*delta
-    if(GameTriggers.playerMovingDown) velocity.y =  - speed.y*delta
+    if(GameTriggers.playerMovingForward) {
+      movingForward = true
+      braking = false
+    }
+    if(GameTriggers.playerMovingBack) {
+      braking = true
+      movingForward = false
+    }
   }
-
-  override var velocity: Vec2 = Vec2(0, 0)
 }
 

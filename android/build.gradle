@@ -35,7 +35,7 @@ android {
         exclude 'META-INF/robovm/ios/robovm.xml'
     }
     defaultConfig {
-        applicationId "org.eamonn.salvage"
+        applicationId "org.eamonnh.salvage"
         minSdkVersion 26
         targetSdkVersion 30
         versionCode 1
@@ -105,7 +105,7 @@ task run(type: Exec) {
     }
 
     def adb = path + "/platform-tools/adb"
-    commandLine "$adb", 'shell', 'am', 'start', '-n', 'org.eamonn.salvage/org.eamonn.salvage.AndroidLauncher'
+    commandLine "$adb", 'shell', 'am', 'start', '-n', 'org.eamonnh.salvage/org.eamonnh.salvage.AndroidLauncher'
 }
 
 eclipse.project.name = appName + "-android"

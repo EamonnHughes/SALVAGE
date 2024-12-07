@@ -1,4 +1,4 @@
-package org.eamonn.salvage
+package org.eamonnh.salvage
 
 import com.badlogic.gdx.InputAdapter
 import com.badlogic.gdx.graphics.g2d.PolygonSpriteBatch

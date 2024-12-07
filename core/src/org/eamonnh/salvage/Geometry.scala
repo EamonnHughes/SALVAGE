@@ -1,4 +1,4 @@
-package org.eamonn.salvage
+package org.eamonnh.salvage
 
 import com.badlogic.gdx.Gdx
 
