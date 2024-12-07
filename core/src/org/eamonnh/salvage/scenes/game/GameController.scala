@@ -23,6 +23,7 @@ class GameController(game: Game) extends InputAdapter {
     if(keycode == Keys.UP || keycode == Keys.W) GameTriggers.Forward = false
     if(keycode == Keys.LEFT || keycode == Keys.A) GameTriggers.Left = false
     if(keycode == Keys.RIGHT || keycode == Keys.D) GameTriggers.Right = false
+    if(keycode == Keys.SHIFT_LEFT || keycode == Keys.SHIFT_RIGHT) GameTriggers.Shift = false
     true
   }
 
@@ -31,6 +32,7 @@ class GameController(game: Game) extends InputAdapter {
     if(keycode == Keys.UP || keycode == Keys.W) GameTriggers.Forward = true
     if(keycode == Keys.LEFT || keycode == Keys.A) GameTriggers.Left = true
     if(keycode == Keys.RIGHT || keycode == Keys.D) GameTriggers.Right = true
+    if(keycode == Keys.SHIFT_LEFT || keycode == Keys.SHIFT_RIGHT) GameTriggers.Shift = true
     true
   }
 }

@@ -10,14 +10,14 @@ class Player extends Ship {
   override def sprite = arch.sprite
   def playerUpdate(game: Game, delta: Float): Unit ={
     if(GameTriggers.Forward) {
-      movingForward = true
-      braking = false
-    } else if(GameTriggers.Back) {
-      braking = true
-      movingForward = false
+      if(GameTriggers.Shift) {
+        movingBrake = true
+      } else {
+        movingForward = true
+      }
     } else {
-      braking = false
       movingForward = false
+      movingBrake = false
     }
     if(GameTriggers.Right) {
       rotatingRight = true

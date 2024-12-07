@@ -5,4 +5,5 @@ object GameTriggers {
   var Back = false
   var Right = false
   var Left = false
+  var Shift = false
 }
