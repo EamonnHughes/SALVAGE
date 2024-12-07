@@ -2,6 +2,7 @@ package org.eamonnh.salvage.scenes.game
 
 import com.badlogic.gdx.Input.Keys
 import com.badlogic.gdx.InputAdapter
+import org.eamonnh.salvage.ships.components.{MKI, MKII}
 
 class GameController(game: Game) extends InputAdapter {
   override def touchDown(
@@ -24,6 +25,8 @@ class GameController(game: Game) extends InputAdapter {
     if(keycode == Keys.LEFT || keycode == Keys.A) GameTriggers.Left = false
     if(keycode == Keys.RIGHT || keycode == Keys.D) GameTriggers.Right = false
     if(keycode == Keys.SHIFT_LEFT || keycode == Keys.SHIFT_RIGHT) GameTriggers.Shift = false
+    //if(keycode == Keys.Q) game.player.engine = new MKI()
+    //if(keycode == Keys.E) game.player.engine = new MKII()
     true
   }
 

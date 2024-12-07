@@ -7,7 +7,6 @@ import org.eamonnh.salvage.ships.components.Engine
 import org.eamonnh.salvage.util.Vec2F
 
 class Player extends Ship {
-  override def sprite = arch.sprite
   def playerUpdate(game: Game, delta: Float): Unit ={
     if(GameTriggers.Forward) {
       if(GameTriggers.Shift) {

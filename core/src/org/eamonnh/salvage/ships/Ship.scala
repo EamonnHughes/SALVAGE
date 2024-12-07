@@ -13,14 +13,18 @@ abstract class Ship extends Motile {
   var rotatingRight: Boolean = false
   var rotatingLeft: Boolean = false
 
+  override def deRotAccel = engine.turnDecel
+  override def deAccel = arch.deAccel
+  override def topSpeed = arch.topSpeed
+  override def size = arch.shipClass.size
+
+
+  override def sprites: List[TextureWrapper] = List(engine.sprite, arch.sprite)
+
   override def init(): Unit = {
     location = Vec2F(5, 5)
     arch = new Carc()
     engine = new MKI()
-    size = arch.shipClass.size
-    deRotAccel = engine.turnDecel
-    deAccel = arch.deAccel
-    topSpeed = arch.topSpeed
   }
   override def update(game: Game, delta: Float): Unit = {
     if(movingForward) {
