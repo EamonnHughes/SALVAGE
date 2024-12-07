@@ -1,13 +1,15 @@
-package org.eamonnh.salvage.actors
+package org.eamonnh.salvage.ships
 
 import org.eamonnh.salvage.Salvage.garbage
 import org.eamonnh.salvage.util.TextureWrapper
 
-trait Archetype {
+abstract class Archetype {
   var sprite: TextureWrapper
+  var shipClass: ShipClass
 }
 
-case class Carc() extends Archetype {
+class Carc extends Archetype {
 
   override var sprite: TextureWrapper = TextureWrapper.load("Carcharodon.png")
+  override var shipClass: ShipClass = new Fighter()
 }
