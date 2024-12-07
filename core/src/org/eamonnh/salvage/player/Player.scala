@@ -8,14 +8,26 @@ import org.eamonnh.salvage.util.Vec2F
 
 class Player extends Ship {
   override def sprite = arch.sprite
-  override def update(game: Game, delta: Float): Unit ={
-    if(GameTriggers.playerMovingForward) {
+  def playerUpdate(game: Game, delta: Float): Unit ={
+    if(GameTriggers.Forward) {
       movingForward = true
       braking = false
-    }
-    if(GameTriggers.playerMovingBack) {
+    } else if(GameTriggers.Back) {
       braking = true
       movingForward = false
+    } else {
+      braking = false
+      movingForward = false
+    }
+    if(GameTriggers.Right) {
+      rotatingRight = true
+      rotatingLeft = false
+    } else if(GameTriggers.Left) {
+      rotatingLeft = true
+      rotatingRight = false
+    } else {
+      rotatingRight = false
+      rotatingLeft = false
     }
   }
 }

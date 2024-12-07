@@ -17,6 +17,7 @@ class Game extends Scene{
   }
 
   override def update(delta: Float): Option[Scene] = {
+    player.playerUpdate(this, delta)
     player.realUpdate(this, delta)
     None
   }

@@ -19,20 +19,18 @@ class GameController(game: Game) extends InputAdapter {
   }
 
   override def keyUp(keycode: Int): Boolean = {
-    if(keycode == Keys.DOWN || keycode == Keys.S) GameTriggers.playerMovingBack = false
-    if(keycode == Keys.UP || keycode == Keys.W) GameTriggers.playerMovingForward = false
+    if(keycode == Keys.DOWN || keycode == Keys.S) GameTriggers.Back = false
+    if(keycode == Keys.UP || keycode == Keys.W) GameTriggers.Forward = false
+    if(keycode == Keys.LEFT || keycode == Keys.A) GameTriggers.Left = false
+    if(keycode == Keys.RIGHT || keycode == Keys.D) GameTriggers.Right = false
     true
   }
 
   override def keyDown(keycode: Int): Boolean = {
-    if(keycode == Keys.DOWN || keycode == Keys.S) {
-      GameTriggers.playerMovingBack = true
-      GameTriggers.playerMovingForward = false
-    }
-    if(keycode == Keys.UP || keycode == Keys.W) {
-      GameTriggers.playerMovingForward = true
-      GameTriggers.playerMovingBack = false
-    }
+    if(keycode == Keys.DOWN || keycode == Keys.S) GameTriggers.Back = true
+    if(keycode == Keys.UP || keycode == Keys.W) GameTriggers.Forward = true
+    if(keycode == Keys.LEFT || keycode == Keys.A) GameTriggers.Left = true
+    if(keycode == Keys.RIGHT || keycode == Keys.D) GameTriggers.Right = true
     true
   }
 }
