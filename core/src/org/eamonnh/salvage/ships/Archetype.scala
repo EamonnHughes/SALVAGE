@@ -17,3 +17,10 @@ class Carc extends Archetype {
   override var deAccel: Float = .99f
   override var topSpeed: Float = .5f
 }
+class Corv extends Archetype {
+
+  override var sprite: TextureWrapper = TextureWrapper.load("Corvette.png")
+  override var shipClass: ShipClass = new Fighter()
+  override var deAccel: Float = .95f
+  override var topSpeed: Float = .65f
+}
