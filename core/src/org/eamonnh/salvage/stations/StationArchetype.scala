@@ -12,5 +12,5 @@ abstract class StationArchetype{
 class Outpost extends StationArchetype {
 
   override var sprite: TextureWrapper = TextureWrapper.load("Station1.png")
-  override var size: Vec2I = Vec2I(8, 8)
+  override var size: Vec2I = Vec2I(4, 4)
 }

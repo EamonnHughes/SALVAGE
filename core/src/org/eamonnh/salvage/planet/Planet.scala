@@ -2,20 +2,24 @@ package org.eamonnh.salvage.planet
 
 import org.eamonnh.salvage.actors.Actor
 import org.eamonnh.salvage.scenes.game.Game
-import org.eamonnh.salvage.stations.{Outpost, StationArchetype}
+import org.eamonnh.salvage.stations.{Orbital, Outpost, StationArchetype}
 import org.eamonnh.salvage.util.{TextureWrapper, Vec2F}
 
-class Planet extends Actor {
+class Planet extends Actor with Orbital {
+
+  override var parent: Option[Actor] = None
+  override var distanceOut: Int = _
+  override var orbitalPeriod: Float = _
+
   var pClass: PlanetClass = _
   override def size = pClass.size
 
   override def sprites: List[TextureWrapper] = List(pClass.sprite)
 
   override def init(game: Game): Unit = {
-    pClass = new BarrenSmall()
-    location = Vec2F(20, 20)
   }
   override def update(game: Game, delta: Float): Unit = {
 
   }
+  override var pointAt: Boolean = false
 }
