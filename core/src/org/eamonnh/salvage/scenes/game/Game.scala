@@ -20,7 +20,7 @@ class Game extends Scene {
   val planetOne = new Planet()
   planetOne.pClass = new BarrenSmall()
   planetOne.parent = Some(sunOne)
-  planetOne.distanceOut = 100
+  planetOne.distanceOut = 256
   planetOne.orbitalPeriod = 2000
   val moonOne = new Planet()
   moonOne.pClass = new MoonTiny()

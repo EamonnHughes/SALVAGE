@@ -10,5 +10,5 @@ abstract class SunClass {
 
 class SunI extends SunClass {
   override var sprite: TextureWrapper = TextureWrapper.load("Sun1.png")
-  override var size: Vec2I = Vec2I(128, 128)
+  override var size: Vec2I = Vec2I(256, 256)
 }
