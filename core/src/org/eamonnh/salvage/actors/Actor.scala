@@ -5,7 +5,7 @@ import org.eamonnh.salvage.screenUnit
 import org.eamonnh.salvage.util._
 import org.eamonnh.salvage.scenes.game.Game
 
-abstract class Motile {
+abstract class Actor {
   var location: Vec2F = Vec2F(0, 0)
   var velocity: Vec2F = Vec2F(0, 0)
   def topSpeed: Float = 0f

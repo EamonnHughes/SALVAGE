@@ -5,8 +5,8 @@ import org.eamonnh.salvage.scenes.game._
 import org.eamonnh.salvage.ships.components._
 import org.eamonnh.salvage.util._
 
-abstract class Ship extends Motile {
-  var arch: Archetype = _
+abstract class Ship extends Actor {
+  var arch: ShipArchetype = _
   var engine: Engine = _
   var movingForward: Boolean = false
   var movingBrake: Boolean = false

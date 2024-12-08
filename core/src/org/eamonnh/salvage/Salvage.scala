@@ -2,6 +2,7 @@ package org.eamonnh.salvage
 
 import com.badlogic.gdx.Application.ApplicationType
 import com.badlogic.gdx.audio.Sound
+import com.badlogic.gdx.graphics.Pixmap
 import com.badlogic.gdx.graphics.g2d.PolygonSpriteBatch
 import com.badlogic.gdx.math.Matrix4
 import com.badlogic.gdx.utils.ScreenUtils
@@ -19,7 +20,8 @@ class Salvage extends ApplicationAdapter {
   override def create(): Unit = {
 
     Gdx.input.setCatchKey(Input.Keys.BACK, true)
-
+    var pm = new Pixmap(Gdx.files.internal("Mouse.png"));
+    Gdx.graphics.setCursor(Gdx.graphics.newCursor(pm, 0, 0))
     batch = garbage.add(new PolygonSpriteBatch())
 
     Salvage.Square = TextureWrapper.load("Square.png")
@@ -37,10 +39,9 @@ class Salvage extends ApplicationAdapter {
     val delta = Gdx.graphics.getDeltaTime
     scene.update(delta) foreach setScene
     ScreenUtils.clear(0f, 0f, 0f, 1)
-    batch.setTransformMatrix(idMatrix)
+    batch.setTransformMatrix(new Matrix4())
     batch.begin()
     scene.render(batch)
-
     batch.end()
   }
 

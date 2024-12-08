@@ -3,6 +3,7 @@ package org.eamonnh
 import com.badlogic.gdx.Gdx.input
 import com.badlogic.gdx.Input.Peripheral
 import com.badlogic.gdx.graphics.Color
+import org.eamonnh.salvage.util.Vec2F
 
 import java.util.concurrent.TimeUnit
 import scala.concurrent.duration.FiniteDuration
@@ -10,6 +11,10 @@ import scala.util.Random
 
 // Things kinda stolen from scaloi
 package object salvage {
+
+  val CenterAlign = 1
+  var zoom = 1f
+
   def d(die: Int): Int = Random.nextInt(die) + 1
   def d(nOd: Int, die: Int): Int = {
     var amt = 0
@@ -103,6 +108,4 @@ package object salvage {
     def ⍺⍺(alpha: Float): Color =
       new Color(self.r, self.g, self.b, self.a * alpha * alpha)
   }
-
-  val CenterAlign = 1
 }
