@@ -1,9 +1,9 @@
 package org.eamonnh.salvage.actors.planets
 
 import org.eamonnh.salvage.actors.Actor
-import org.eamonnh.salvage.actors.stations.{Orbital, Outpost, StationArchetype}
+import org.eamonnh.salvage.actors.stations.Orbital
 import org.eamonnh.salvage.scenes.game.Game
-import org.eamonnh.salvage.util.{TextureWrapper, Vec2F}
+import org.eamonnh.salvage.util.TextureWrapper
 
 class Planet extends Actor with Orbital {
 
@@ -16,10 +16,7 @@ class Planet extends Actor with Orbital {
 
   override def sprites: List[TextureWrapper] = List(pClass.sprite)
 
-  override def init(game: Game): Unit = {
-  }
-  override def update(game: Game, delta: Float): Unit = {
-
-  }
+  override def init(game: Game): Unit = {}
+  override def update(game: Game, delta: Float): Unit = {}
   override var pointAt: Boolean = false
 }

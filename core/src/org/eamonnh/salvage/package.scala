@@ -3,7 +3,6 @@ package org.eamonnh
 import com.badlogic.gdx.Gdx.input
 import com.badlogic.gdx.Input.Peripheral
 import com.badlogic.gdx.graphics.Color
-import org.eamonnh.salvage.util.Vec2F
 
 import java.util.concurrent.TimeUnit
 import scala.concurrent.duration.FiniteDuration

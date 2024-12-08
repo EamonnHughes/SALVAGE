@@ -6,15 +6,11 @@ import org.eamonnh.salvage.util.TextureWrapper
 
 class Sun extends Actor {
 
-
   var pClass: SunClass = _
   override def size = pClass.size
 
   override def sprites: List[TextureWrapper] = List(pClass.sprite)
 
-  override def init(game: Game): Unit = {
-  }
-  override def update(game: Game, delta: Float): Unit = {
-
-  }
+  override def init(game: Game): Unit = {}
+  override def update(game: Game, delta: Float): Unit = {}
 }

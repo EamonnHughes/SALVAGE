@@ -11,12 +11,18 @@ trait Orbital extends Actor {
 
   def orbitUpdate(): Unit = {
     parent.foreach(par => {
-      if(pointAt) rotation = Math.atan2((par.location.y - location.y), (par.location.x - location.x)).toFloat
+      if (pointAt)
+        rotation = Math
+          .atan2((par.location.y - location.y), (par.location.x - location.x))
+          .toFloat
       location = Vec2F(
-        par.location.x + (distanceOut * Math.cos(((lifetime % orbitalPeriod) / orbitalPeriod) * Math.PI * 2)).toFloat,
-        par.location.y + (distanceOut * Math.sin(((lifetime % orbitalPeriod) / orbitalPeriod) * Math.PI * 2)).toFloat
+        par.location.x + (distanceOut * Math.cos(
+          ((lifetime % orbitalPeriod) / orbitalPeriod) * Math.PI * 2
+        )).toFloat,
+        par.location.y + (distanceOut * Math.sin(
+          ((lifetime % orbitalPeriod) / orbitalPeriod) * Math.PI * 2
+        )).toFloat
       )
-    }
-    )
+    })
   }
 }

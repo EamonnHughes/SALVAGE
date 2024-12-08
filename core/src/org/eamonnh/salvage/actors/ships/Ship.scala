@@ -18,7 +18,6 @@ abstract class Ship extends Actor {
   override def topSpeed = arch.topSpeed
   override def size = arch.shipClass.size
 
-
   override def sprites: List[TextureWrapper] = List(engine.sprite, arch.sprite)
 
   override def init(game: Game): Unit = {
@@ -27,21 +26,25 @@ abstract class Ship extends Actor {
     engine = new MKI()
   }
   override def update(game: Game, delta: Float): Unit = {
-    if(movingSlower) {
+    if (movingSlower) {
       forwardAcc = engine.forwardSpeed * engine.slowdown
     } else if (movingFullSpeed) {
       forwardAcc = engine.forwardSpeed
     } else {
       forwardAcc = 0
     }
-    if(rotatingRight) {
+    if (rotatingRight) {
       rotVel = -engine.turnSpeed
-    } else if(rotatingLeft) {
+    } else if (rotatingLeft) {
       rotVel = engine.turnSpeed
     }
 
     //PHYSICS
-    if (Math.sqrt((velocity.x * velocity.x) + (velocity.y * velocity.y)) < topSpeed) {
+    if (
+      Math.sqrt(
+        (velocity.x * velocity.x) + (velocity.y * velocity.y)
+      ) < topSpeed
+    ) {
       velocity += Vec2F(
         forwardAcc * Math.cos(rotation).toFloat,
         forwardAcc * Math.sin(rotation).toFloat

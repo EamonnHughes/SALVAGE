@@ -1,9 +1,9 @@
 package org.eamonnh.salvage.actors
 
 import com.badlogic.gdx.graphics.g2d.PolygonSpriteBatch
+import org.eamonnh.salvage.scenes.game.Game
 import org.eamonnh.salvage.screenUnit
 import org.eamonnh.salvage.util._
-import org.eamonnh.salvage.scenes.game.Game
 
 abstract class Actor {
   var location: Vec2F = Vec2F(0, 0)
@@ -19,7 +19,24 @@ abstract class Actor {
   def sprites: List[TextureWrapper]
   def draw(batch: PolygonSpriteBatch): Unit = {
     sprites.foreach(sprite => {
-      batch.draw(sprite, (location.x - (size.x / 2)) * screenUnit, (location.y - (size.y / 2)) * screenUnit, size.x * screenUnit / 2, size.y * screenUnit / 2, size.x * screenUnit, size.y * screenUnit, 1, 1, ((rotation / (Math.PI * 2)) * 360).toInt, 0, 0, size.x * 16, size.y * 16, false, false)
+      batch.draw(
+        sprite,
+        (location.x - (size.x / 2)) * screenUnit,
+        (location.y - (size.y / 2)) * screenUnit,
+        size.x * screenUnit / 2,
+        size.y * screenUnit / 2,
+        size.x * screenUnit,
+        size.y * screenUnit,
+        1,
+        1,
+        ((rotation / (Math.PI * 2)) * 360).toInt,
+        0,
+        0,
+        size.x * 16,
+        size.y * 16,
+        false,
+        false
+      )
     })
   }
   def realUpdate(game: Game, delta: Float): Unit = {

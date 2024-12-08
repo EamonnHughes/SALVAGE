@@ -3,15 +3,15 @@ package org.eamonnh.salvage.scenes.game
 import com.badlogic.gdx.InputAdapter
 import com.badlogic.gdx.graphics.g2d.PolygonSpriteBatch
 import com.badlogic.gdx.math.Matrix4
-import org.eamonnh.salvage.actors.Actor
 import org.eamonnh.salvage._
+import org.eamonnh.salvage.actors.Actor
 import org.eamonnh.salvage.actors.planets.{BarrenSmall, MoonTiny, Planet}
 import org.eamonnh.salvage.actors.stations.{Orbital, Outpost, Station}
 import org.eamonnh.salvage.actors.suns.{Sun, SunI}
 import org.eamonnh.salvage.player._
 import org.eamonnh.salvage.util.Vec2F
 
-class Game extends Scene{
+class Game extends Scene {
 
   val player = new Player()
   val sunOne = new Sun()
@@ -33,9 +33,13 @@ class Game extends Scene{
   stationOne.distanceOut = 6
   stationOne.orbitalPeriod = -50
 
-  def motiles: List[Actor] = List(sunOne, planetOne, moonOne, stationOne, player)
+  def motiles: List[Actor] =
+    List(sunOne, planetOne, moonOne, stationOne, player)
 
-  def cameraLoc: Vec2F = Vec2F(player.location.x * screenUnit * zoom - (Geometry.ScreenWidth/2), player.location.y * screenUnit * zoom - (Geometry.ScreenHeight/2))
+  def cameraLoc: Vec2F = Vec2F(
+    player.location.x * screenUnit * zoom - (Geometry.ScreenWidth / 2),
+    player.location.y * screenUnit * zoom - (Geometry.ScreenHeight / 2)
+  )
   override def init(): InputAdapter = {
     motiles.foreach(m => m.init(this))
     new GameController(this)
@@ -45,7 +49,7 @@ class Game extends Scene{
     player.playerUpdate(this, delta)
     motiles.foreach {
       case orbital: Orbital => orbital.orbitUpdate()
-      case default =>
+      case default          =>
     }
     motiles.foreach(m => m.realUpdate(this, delta))
     None

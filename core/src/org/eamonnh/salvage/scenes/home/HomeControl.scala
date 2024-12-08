@@ -19,7 +19,7 @@ class HomeControl(home: Home) extends InputAdapter {
   }
 
   override def keyDown(keycode: Int): Boolean = {
-    if(keycode == Keys.SPACE) home.ready = true
+    if (keycode == Keys.SPACE) home.ready = true
     true
   }
 }

@@ -14,6 +14,5 @@ class Home extends Scene {
     if (ready) Some(new Game) else None
   }
 
-  override def render(batch: PolygonSpriteBatch): Unit = {
-  }
+  override def render(batch: PolygonSpriteBatch): Unit = {}
 }

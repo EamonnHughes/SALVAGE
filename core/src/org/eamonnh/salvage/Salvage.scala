@@ -7,8 +7,8 @@ import com.badlogic.gdx.graphics.g2d.PolygonSpriteBatch
 import com.badlogic.gdx.math.Matrix4
 import com.badlogic.gdx.utils.ScreenUtils
 import com.badlogic.gdx.{ApplicationAdapter, Gdx, Input}
-import org.eamonnh.salvage.util.{GarbageCan, TextureWrapper}
 import org.eamonnh.salvage.scenes.home.Home
+import org.eamonnh.salvage.util.{GarbageCan, TextureWrapper}
 
 class Salvage extends ApplicationAdapter {
   import Salvage.garbage
