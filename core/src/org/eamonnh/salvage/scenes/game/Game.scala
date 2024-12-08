@@ -6,6 +6,8 @@ import com.badlogic.gdx.math.Matrix4
 import org.eamonnh.salvage._
 import org.eamonnh.salvage.actors.Actor
 import org.eamonnh.salvage.actors.planets.{BarrenSmall, MoonTiny, Planet}
+import org.eamonnh.salvage.actors.ships.Carc
+import org.eamonnh.salvage.actors.ships.components.MKI
 import org.eamonnh.salvage.actors.stations.{Orbital, Outpost, Station}
 import org.eamonnh.salvage.actors.suns.{Sun, SunI}
 import org.eamonnh.salvage.player._
@@ -13,7 +15,6 @@ import org.eamonnh.salvage.util.Vec2F
 
 class Game extends Scene {
 
-  val player = new Player()
   val sunOne = new Sun()
   sunOne.pClass = new SunI()
   sunOne.location = Vec2F(20, 20)
@@ -32,6 +33,7 @@ class Game extends Scene {
   stationOne.parent = Some(moonOne)
   stationOne.distanceOut = 6
   stationOne.orbitalPeriod = -50
+  val player = new Player()
 
   def motiles: List[Actor] =
     List(sunOne, planetOne, moonOne, stationOne, player)
@@ -42,6 +44,13 @@ class Game extends Scene {
   )
   override def init(): InputAdapter = {
     motiles.foreach(m => m.init(this))
+    motiles.foreach {
+      case orbital: Orbital => orbital.orbitInit()
+      case default          =>
+    }
+    player.location = stationOne.location.copy()
+    player.arch = new Carc()
+    player.engine = new MKI()
     new GameController(this)
   }
 

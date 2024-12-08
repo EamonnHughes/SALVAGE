@@ -21,9 +21,6 @@ abstract class Ship extends Actor {
   override def sprites: List[TextureWrapper] = List(engine.sprite, arch.sprite)
 
   override def init(game: Game): Unit = {
-    location = Vec2F(5, 5)
-    arch = new Carc()
-    engine = new MKI()
   }
   override def update(game: Game, delta: Float): Unit = {
     if (movingSlower) {
