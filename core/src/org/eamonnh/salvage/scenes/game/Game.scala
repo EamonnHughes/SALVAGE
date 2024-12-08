@@ -7,15 +7,21 @@ import org.eamonnh.salvage.actors.Actor
 import org.eamonnh.salvage._
 import org.eamonnh.salvage.actors.planets.{BarrenSmall, MoonTiny, Planet}
 import org.eamonnh.salvage.actors.stations.{Orbital, Outpost, Station}
+import org.eamonnh.salvage.actors.suns.{Sun, SunI}
 import org.eamonnh.salvage.player._
 import org.eamonnh.salvage.util.Vec2F
 
 class Game extends Scene{
 
   val player = new Player()
+  val sunOne = new Sun()
+  sunOne.pClass = new SunI()
+  sunOne.location = Vec2F(20, 20)
   val planetOne = new Planet()
   planetOne.pClass = new BarrenSmall()
-  planetOne.location = Vec2F(20, 20)
+  planetOne.parent = Some(sunOne)
+  planetOne.distanceOut = 100
+  planetOne.orbitalPeriod = 2000
   val moonOne = new Planet()
   moonOne.pClass = new MoonTiny()
   moonOne.parent = Some(planetOne)
@@ -27,7 +33,7 @@ class Game extends Scene{
   stationOne.distanceOut = 6
   stationOne.orbitalPeriod = -50
 
-  def motiles: List[Actor] = List(planetOne, moonOne, stationOne, player)
+  def motiles: List[Actor] = List(sunOne, planetOne, moonOne, stationOne, player)
 
   def cameraLoc: Vec2F = Vec2F(player.location.x * screenUnit * zoom - (Geometry.ScreenWidth/2), player.location.y * screenUnit * zoom - (Geometry.ScreenHeight/2))
   override def init(): InputAdapter = {
@@ -39,9 +45,7 @@ class Game extends Scene{
     player.playerUpdate(this, delta)
     motiles.foreach {
       case orbital: Orbital => orbital.orbitUpdate()
-      case default => {
-
-      }
+      case default =>
     }
     motiles.foreach(m => m.realUpdate(this, delta))
     None
