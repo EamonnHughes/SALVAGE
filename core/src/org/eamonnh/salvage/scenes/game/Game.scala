@@ -25,7 +25,7 @@ class Game extends Scene{
   stationOne.arch = new Outpost()
   stationOne.parent = Some(moonOne)
   stationOne.distanceOut = 6
-  stationOne.orbitalPeriod = 50
+  stationOne.orbitalPeriod = -50
 
   def motiles: List[Actor] = List(planetOne, moonOne, stationOne, player)
 
