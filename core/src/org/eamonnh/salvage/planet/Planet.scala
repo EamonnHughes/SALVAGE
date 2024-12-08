@@ -11,7 +11,7 @@ class Planet extends Actor {
 
   override def sprites: List[TextureWrapper] = List(pClass.sprite)
 
-  override def init(): Unit = {
+  override def init(game: Game): Unit = {
     pClass = new BarrenSmall()
     location = Vec2F(20, 20)
   }

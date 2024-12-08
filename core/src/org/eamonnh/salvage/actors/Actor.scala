@@ -8,6 +8,7 @@ import org.eamonnh.salvage.scenes.game.Game
 abstract class Actor {
   var location: Vec2F = Vec2F(0, 0)
   var velocity: Vec2F = Vec2F(0, 0)
+  var lifetime = 0f
   def topSpeed: Float = 0f
   def deAccel: Float = .9f
   var rotVel: Float = 0
@@ -18,22 +19,15 @@ abstract class Actor {
   def sprites: List[TextureWrapper]
   def draw(batch: PolygonSpriteBatch): Unit = {
     sprites.foreach(sprite => {
-      batch.draw(sprite, location.x * screenUnit, location.y * screenUnit, size.x * screenUnit / 2.5f, size.y * screenUnit / 2, size.x * screenUnit, size.y * screenUnit, 1, 1, ((rotation / (Math.PI * 2)) * 360).toInt, 0, 0, size.x * 16, size.y * 16, false, false)
+      batch.draw(sprite, (location.x - (size.x / 2)) * screenUnit, (location.y - (size.y / 2)) * screenUnit, size.x * screenUnit / 2, size.y * screenUnit / 2, size.x * screenUnit, size.y * screenUnit, 1, 1, ((rotation / (Math.PI * 2)) * 360).toInt, 0, 0, size.x * 16, size.y * 16, false, false)
     })
   }
   def realUpdate(game: Game, delta: Float): Unit = {
     update(game, delta)
-    if (Math.sqrt((velocity.x * velocity.x) + (velocity.y * velocity.y)) < topSpeed) {
-      velocity += Vec2F(
-        forwardAcc * Math.cos(rotation).toFloat,
-        forwardAcc * Math.sin(rotation).toFloat
-      )
-  }
     location += velocity
-    velocity *= deAccel
     rotation += rotVel
-    rotVel *= deRotAccel
+    lifetime += delta
   }
   def update(game: Game, delta: Float): Unit
-  def init(): Unit
+  def init(game: Game): Unit
 }

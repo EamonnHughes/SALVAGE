@@ -21,7 +21,7 @@ abstract class Ship extends Actor {
 
   override def sprites: List[TextureWrapper] = List(engine.sprite, arch.sprite)
 
-  override def init(): Unit = {
+  override def init(game: Game): Unit = {
     location = Vec2F(5, 5)
     arch = new Carc()
     engine = new MKI()
@@ -39,5 +39,15 @@ abstract class Ship extends Actor {
     } else if(rotatingLeft) {
       rotVel = engine.turnSpeed
     }
+
+    //PHYSICS
+    if (Math.sqrt((velocity.x * velocity.x) + (velocity.y * velocity.y)) < topSpeed) {
+      velocity += Vec2F(
+        forwardAcc * Math.cos(rotation).toFloat,
+        forwardAcc * Math.sin(rotation).toFloat
+      )
+    }
+    velocity *= deAccel
+    rotVel *= deRotAccel
   }
 }

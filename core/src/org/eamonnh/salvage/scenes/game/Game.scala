@@ -20,7 +20,7 @@ class Game extends Scene{
 
   def cameraLoc: Vec2F = Vec2F(player.location.x * screenUnit - (Geometry.ScreenWidth/2), player.location.y * screenUnit - (Geometry.ScreenHeight/2))
   override def init(): InputAdapter = {
-    motiles.foreach(m => m.init())
+    motiles.foreach(m => m.init(this))
     new GameController(this)
   }
 
