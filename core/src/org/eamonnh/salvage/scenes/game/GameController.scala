@@ -46,7 +46,7 @@ class GameController(game: Game) extends InputAdapter {
   }
 
   override def scrolled(amountX: Float, amountY: Float): Boolean = {
-    zoom = (zoom + (amountY / 4)) max .2f min 5
+    zoom = (zoom + (amountY / 4)) max .05f min 20
     true
   }
 }
