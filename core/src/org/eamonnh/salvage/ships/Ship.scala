@@ -8,8 +8,8 @@ import org.eamonnh.salvage.util._
 abstract class Ship extends Actor {
   var arch: ShipArchetype = _
   var engine: Engine = _
-  var movingForward: Boolean = false
-  var movingBrake: Boolean = false
+  var movingSlower: Boolean = false
+  var movingFullSpeed: Boolean = false
   var rotatingRight: Boolean = false
   var rotatingLeft: Boolean = false
 
@@ -27,10 +27,10 @@ abstract class Ship extends Actor {
     engine = new MKI()
   }
   override def update(game: Game, delta: Float): Unit = {
-    if(movingForward) {
+    if(movingSlower) {
+      forwardAcc = engine.forwardSpeed * engine.slowdown
+    } else if (movingFullSpeed) {
       forwardAcc = engine.forwardSpeed
-    } else if (movingBrake) {
-      forwardAcc = engine.forwardSpeed * engine.brakeRate
     } else {
       forwardAcc = 0
     }

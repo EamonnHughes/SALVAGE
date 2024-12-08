@@ -10,13 +10,13 @@ class Player extends Ship {
   def playerUpdate(game: Game, delta: Float): Unit ={
     if(GameTriggers.Forward) {
       if(GameTriggers.Shift) {
-        movingBrake = true
+        movingFullSpeed = true
       } else {
-        movingForward = true
+        movingSlower = true
       }
     } else {
-      movingForward = false
-      movingBrake = false
+      movingSlower = false
+      movingFullSpeed = false
     }
     if(GameTriggers.Right) {
       rotatingRight = true
