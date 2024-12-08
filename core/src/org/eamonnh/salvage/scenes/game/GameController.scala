@@ -4,6 +4,7 @@ import com.badlogic.gdx.Input.Keys
 import com.badlogic.gdx.InputAdapter
 import org.eamonnh.salvage.ships._
 import org.eamonnh.salvage.ships.components._
+import org.eamonnh.salvage.zoom
 
 class GameController(game: Game) extends InputAdapter {
   override def touchDown(
@@ -39,6 +40,12 @@ class GameController(game: Game) extends InputAdapter {
     if(keycode == Keys.LEFT || keycode == Keys.A) GameTriggers.Left = true
     if(keycode == Keys.RIGHT || keycode == Keys.D) GameTriggers.Right = true
     if(keycode == Keys.SHIFT_LEFT || keycode == Keys.SHIFT_RIGHT) GameTriggers.Shift = true
+    true
+  }
+
+
+  override def scrolled(amountX: Float, amountY: Float): Boolean = {
+    zoom = (zoom + (amountY / 4)) max .2f min 5
     true
   }
 }

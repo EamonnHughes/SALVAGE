@@ -29,7 +29,7 @@ class Game extends Scene{
 
   def motiles: List[Actor] = List(planetOne, moonOne, stationOne, player)
 
-  def cameraLoc: Vec2F = Vec2F(player.location.x * screenUnit - (Geometry.ScreenWidth/2), player.location.y * screenUnit - (Geometry.ScreenHeight/2))
+  def cameraLoc: Vec2F = Vec2F(player.location.x * screenUnit * zoom - (Geometry.ScreenWidth/2), player.location.y * screenUnit * zoom - (Geometry.ScreenHeight/2))
   override def init(): InputAdapter = {
     motiles.foreach(m => m.init(this))
     new GameController(this)
