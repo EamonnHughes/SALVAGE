@@ -8,6 +8,6 @@ abstract class ShipClass {
 
 class Fighter extends ShipClass {
 
-  override var size: Vec2I = Vec2I(4, 4)
+  override var size: Vec2I = Vec2I(2, 2)
 
 }
