@@ -1,4 +1,4 @@
-package org.eamonnh.salvage.ships.components
+package org.eamonnh.salvage.actors.ships.components
 
 import org.eamonnh.salvage.Salvage.garbage
 import org.eamonnh.salvage.util.TextureWrapper

@@ -5,9 +5,9 @@ import com.badlogic.gdx.graphics.g2d.PolygonSpriteBatch
 import com.badlogic.gdx.math.Matrix4
 import org.eamonnh.salvage.actors.Actor
 import org.eamonnh.salvage._
-import org.eamonnh.salvage.planet.{BarrenSmall, MoonTiny, Planet}
+import org.eamonnh.salvage.actors.planets.{BarrenSmall, MoonTiny, Planet}
+import org.eamonnh.salvage.actors.stations.{Orbital, Outpost, Station}
 import org.eamonnh.salvage.player._
-import org.eamonnh.salvage.stations._
 import org.eamonnh.salvage.util.Vec2F
 
 class Game extends Scene{

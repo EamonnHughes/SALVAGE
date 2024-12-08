@@ -1,4 +1,4 @@
-package org.eamonnh.salvage.stations
+package org.eamonnh.salvage.actors.stations
 
 import org.eamonnh.salvage.Salvage.garbage
 import org.eamonnh.salvage.actors.Actor

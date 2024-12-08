@@ -1,8 +1,8 @@
-package org.eamonnh.salvage.ships
+package org.eamonnh.salvage.actors.ships
 
 import org.eamonnh.salvage.actors._
+import org.eamonnh.salvage.actors.ships.components.{Engine, MKI}
 import org.eamonnh.salvage.scenes.game._
-import org.eamonnh.salvage.ships.components._
 import org.eamonnh.salvage.util._
 
 abstract class Ship extends Actor {

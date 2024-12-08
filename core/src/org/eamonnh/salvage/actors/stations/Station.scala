@@ -1,8 +1,7 @@
-package org.eamonnh.salvage.stations
+package org.eamonnh.salvage.actors.stations
+
 import org.eamonnh.salvage.actors._
 import org.eamonnh.salvage.scenes.game._
-import org.eamonnh.salvage.ships.{ShipArchetype, Carc}
-import org.eamonnh.salvage.ships.components._
 import org.eamonnh.salvage.util._
 
 class Station extends Actor with Orbital {

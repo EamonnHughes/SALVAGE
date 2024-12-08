@@ -2,8 +2,8 @@ package org.eamonnh.salvage.scenes.game
 
 import com.badlogic.gdx.Input.Keys
 import com.badlogic.gdx.InputAdapter
-import org.eamonnh.salvage.ships._
-import org.eamonnh.salvage.ships.components._
+import org.eamonnh.salvage.actors.ships.components.{MKI, MKII}
+import org.eamonnh.salvage.actors.ships.{Carc, Corv}
 import org.eamonnh.salvage.zoom
 
 class GameController(game: Game) extends InputAdapter {

@@ -1,9 +1,9 @@
 package org.eamonnh.salvage.player
 
 import org.eamonnh.salvage.actors.Actor
-import org.eamonnh.salvage.ships.{ShipArchetype, Carc, Ship}
+import org.eamonnh.salvage.actors.ships.{Carc, Ship, ShipArchetype}
+import org.eamonnh.salvage.actors.ships.components.Engine
 import org.eamonnh.salvage.scenes.game.{Game, GameTriggers}
-import org.eamonnh.salvage.ships.components.Engine
 import org.eamonnh.salvage.util.Vec2F
 
 class Player extends Ship {

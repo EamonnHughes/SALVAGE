@@ -1,8 +1,8 @@
-package org.eamonnh.salvage.planet
+package org.eamonnh.salvage.actors.planets
 
 import org.eamonnh.salvage.actors.Actor
+import org.eamonnh.salvage.actors.stations.{Orbital, Outpost, StationArchetype}
 import org.eamonnh.salvage.scenes.game.Game
-import org.eamonnh.salvage.stations.{Orbital, Outpost, StationArchetype}
 import org.eamonnh.salvage.util.{TextureWrapper, Vec2F}
 
 class Planet extends Actor with Orbital {

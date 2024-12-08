@@ -1,4 +1,4 @@
-package org.eamonnh.salvage.planet
+package org.eamonnh.salvage.actors.planets
 
 import org.eamonnh.salvage.Salvage.garbage
 import org.eamonnh.salvage.util.{TextureWrapper, Vec2I}
