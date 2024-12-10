@@ -7,7 +7,7 @@ import org.eamonnh.salvage.util.{TextureWrapper, Vec2F, Vec2I}
 
 class City extends Actor{
 
-  var parent: Planet = _
+  var parent: Actor = _
   var cityType: CityType = _
   var relativePosition: Vec2I = _
   override def size: Vec2I = cityType.size

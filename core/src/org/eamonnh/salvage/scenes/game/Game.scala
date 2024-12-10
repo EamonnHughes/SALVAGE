@@ -39,7 +39,6 @@ class Game extends Scene {
   cityOne.cityType = new CityI()
   cityOne.relativePosition = Vec2I(-5, -5)
   val player = new Player()
-
   def motiles: List[Actor] =
     List(sunOne, planetOne, moonOne, stationOne, cityOne, player)
 
