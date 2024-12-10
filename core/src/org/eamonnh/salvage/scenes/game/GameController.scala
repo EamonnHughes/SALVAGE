@@ -32,6 +32,7 @@ class GameController(game: Game) extends InputAdapter {
     if (keycode == Keys.E) game.player.engine = new MKII()
     if (keycode == Keys.Z) game.player.arch = new Carc()
     if (keycode == Keys.X) game.player.arch = new Corv()
+    game.player.playerKeyUps(keycode, game)
     true
   }
 

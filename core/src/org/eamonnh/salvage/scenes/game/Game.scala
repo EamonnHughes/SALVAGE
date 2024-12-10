@@ -39,7 +39,7 @@ class Game extends Scene {
   cityOne.cityType = new CityI()
   cityOne.relativePosition = Vec2I(-5, -5)
   val player = new Player()
-  def motiles: List[Actor] =
+  def actors: List[Actor] =
     List(sunOne, planetOne, moonOne, stationOne, cityOne, player)
 
   def cameraLoc: Vec2F = Vec2F(
@@ -47,8 +47,8 @@ class Game extends Scene {
     player.location.y * screenUnit * zoom - (Geometry.ScreenHeight / 2)
   )
   override def init(): InputAdapter = {
-    motiles.foreach(m => m.init(this))
-    motiles.foreach {
+    actors.foreach(m => m.init(this))
+    actors.foreach {
       case orbital: Orbital => orbital.orbitInit()
       case default          =>
     }
@@ -60,11 +60,11 @@ class Game extends Scene {
 
   override def update(delta: Float): Option[Scene] = {
     player.playerUpdate(this, delta)
-    motiles.foreach {
+    actors.foreach {
       case orbital: Orbital => orbital.orbitUpdate()
       case default          =>
     }
-    motiles.foreach(m => m.realUpdate(this, delta))
+    actors.foreach(m => m.realUpdate(this, delta))
     None
   }
 
@@ -72,7 +72,7 @@ class Game extends Scene {
     batch.setTransformMatrix(
       new Matrix4().trn(-cameraLoc.x, -cameraLoc.y, 0).scl(zoom)
     )
-    motiles.foreach(m => m.draw(batch))
+    actors.foreach(m => m.draw(batch))
     batch.flush()
     batch.setTransformMatrix(new Matrix4())
     batch.draw(Salvage.Square, 0, 0, Geometry.ScreenWidth, screenUnit)
