@@ -69,13 +69,7 @@ abstract class Ship extends Actor {
 
   def TryToLand(game: Game): Unit = {
     if(game.actors.exists(a => a.isInstanceOf[City] && a.location.distanceFrom(location) < a.size.x/2)) {
-      game.actors.filter(a => a.location.distanceFrom(location) < a.size.x / 2).sortBy(a => a.location.distanceFrom(location)).foreach {
-        case city: City => {
-          anchorage = Some(city)
-          return
-        }
-        case default =>
-      }
+        anchorage = Some(game.actors.collect({ case city: City => city}).minBy(a => a.location.distanceFrom(location)))
     }
   }
 }

@@ -1,6 +1,7 @@
 package org.eamonnh.salvage.scenes.game
 
 import com.badlogic.gdx.InputAdapter
+import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.g2d.PolygonSpriteBatch
 import com.badlogic.gdx.math.Matrix4
 import org.eamonnh.salvage._
@@ -81,6 +82,16 @@ class Game extends Scene {
     actors.foreach(m => m.draw(batch))
     batch.flush()
     batch.setTransformMatrix(new Matrix4())
+    drawUI(batch)
+  }
+
+  def drawUI(batch: PolygonSpriteBatch): Unit = {
     batch.draw(Salvage.Square, 0, 0, Geometry.ScreenWidth, screenUnit)
+    var vicinity = "Space, near " + player.nearestSun(this).name
+    player.anchorage.foreach(a => {
+      vicinity = a.name + ", near " + player.nearestSun(this).name
+    })
+    Text.smallFont.setColor(Color.BLACK)
+    Text.smallFont.draw(batch, vicinity, 0, screenUnit)
   }
 }
