@@ -4,6 +4,7 @@ import com.badlogic.gdx.InputAdapter
 import com.badlogic.gdx.graphics.g2d.PolygonSpriteBatch
 import com.badlogic.gdx.math.Matrix4
 import org.eamonnh.salvage._
+import org.eamonnh.salvage.actors.planets.cities.{City, CityI}
 import org.eamonnh.salvage.actors.{Actor, Orbital}
 import org.eamonnh.salvage.actors.planets.{BarrenSmall, MoonTiny, Planet}
 import org.eamonnh.salvage.actors.ships.Carc
@@ -11,7 +12,7 @@ import org.eamonnh.salvage.actors.ships.components.MKI
 import org.eamonnh.salvage.actors.stations.{Outpost, Station}
 import org.eamonnh.salvage.actors.suns.{Sun, SunI}
 import org.eamonnh.salvage.player._
-import org.eamonnh.salvage.util.Vec2F
+import org.eamonnh.salvage.util.{Vec2F, Vec2I}
 
 class Game extends Scene {
 
@@ -33,10 +34,14 @@ class Game extends Scene {
   stationOne.parent = Some(moonOne)
   stationOne.distanceOut = 6
   stationOne.orbitalPeriod = -50
+  val cityOne = new City()
+  cityOne.parent = planetOne
+  cityOne.cityType = new CityI()
+  cityOne.relativePosition = Vec2I(-5, -5)
   val player = new Player()
 
   def motiles: List[Actor] =
-    List(sunOne, planetOne, moonOne, stationOne, player)
+    List(sunOne, planetOne, moonOne, stationOne, cityOne, player)
 
   def cameraLoc: Vec2F = Vec2F(
     player.location.x * screenUnit * zoom - (Geometry.ScreenWidth / 2),
