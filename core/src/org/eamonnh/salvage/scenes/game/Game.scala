@@ -42,7 +42,7 @@ class Game extends Scene {
   val cityOne = new City()
   cityOne.parent = planetOne
   cityOne.cityType = new CityI()
-  cityOne.relativePosition = Vec2I(-5, -5)
+  cityOne.relativePosition = Vec2I(5, 5)
   cityOne.name = "Riyadh A-thani"
   val player = new Player()
   player.name = "Tzadkiel"
