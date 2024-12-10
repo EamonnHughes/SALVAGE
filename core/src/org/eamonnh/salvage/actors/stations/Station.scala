@@ -21,5 +21,7 @@ class Station extends Actor with Orbital {
       location = Vec2F(par.location.x, par.location.y - distanceOut)
     })
   }
-  override def update(game: Game, delta: Float): Unit = {}
+  override def update(game: Game, delta: Float): Unit = {
+
+  }
 }

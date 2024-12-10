@@ -4,11 +4,11 @@ import com.badlogic.gdx.InputAdapter
 import com.badlogic.gdx.graphics.g2d.PolygonSpriteBatch
 import com.badlogic.gdx.math.Matrix4
 import org.eamonnh.salvage._
-import org.eamonnh.salvage.actors.Actor
+import org.eamonnh.salvage.actors.{Actor, Orbital}
 import org.eamonnh.salvage.actors.planets.{BarrenSmall, MoonTiny, Planet}
 import org.eamonnh.salvage.actors.ships.Carc
 import org.eamonnh.salvage.actors.ships.components.MKI
-import org.eamonnh.salvage.actors.stations.{Orbital, Outpost, Station}
+import org.eamonnh.salvage.actors.stations.{Outpost, Station}
 import org.eamonnh.salvage.actors.suns.{Sun, SunI}
 import org.eamonnh.salvage.player._
 import org.eamonnh.salvage.util.Vec2F

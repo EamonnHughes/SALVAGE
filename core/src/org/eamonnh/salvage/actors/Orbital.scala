@@ -1,7 +1,5 @@
-package org.eamonnh.salvage.actors.stations
+package org.eamonnh.salvage.actors
 
-import org.eamonnh.salvage.actors.Actor
-import org.eamonnh.salvage.scenes.game.Game
 import org.eamonnh.salvage.util.Vec2F
 
 trait Orbital extends Actor {

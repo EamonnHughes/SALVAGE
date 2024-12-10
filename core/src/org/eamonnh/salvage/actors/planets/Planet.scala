@@ -1,7 +1,6 @@
 package org.eamonnh.salvage.actors.planets
 
-import org.eamonnh.salvage.actors.Actor
-import org.eamonnh.salvage.actors.stations.Orbital
+import org.eamonnh.salvage.actors.{Actor, Orbital}
 import org.eamonnh.salvage.scenes.game.Game
 import org.eamonnh.salvage.util.TextureWrapper
 
