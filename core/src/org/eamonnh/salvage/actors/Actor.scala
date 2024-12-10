@@ -8,6 +8,7 @@ import org.eamonnh.salvage.util._
 abstract class Actor {
   var location: Vec2F = Vec2F(0, 0)
   var velocity: Vec2F = Vec2F(0, 0)
+  var name: String = ""
   var lifetime = 0f
   def topSpeed: Float = 0f
   def deAccel: Float = .9f
