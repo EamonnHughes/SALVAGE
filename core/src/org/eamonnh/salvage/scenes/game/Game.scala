@@ -89,7 +89,7 @@ class Game extends Scene {
     batch.draw(Salvage.Square, 0, 0, Geometry.ScreenWidth, screenUnit)
     var vicinity = "Space, near " + player.nearestSun(this).name
     player.anchorage.foreach(a => {
-      vicinity = a.name + ", near " + player.nearestSun(this).name
+      vicinity = a.name + ", " + a.parent.name + ", near " + player.nearestSun(this).name
     })
     Text.smallFont.setColor(Color.BLACK)
     Text.smallFont.draw(batch, vicinity, 0, screenUnit)
