@@ -83,6 +83,7 @@ class Game extends Scene {
     actors.foreach(m => {
       m.rotation = m.rotation % (Math.PI * 2).toFloat
       m.realUpdate(this, delta)
+      m.rotation = m.rotation % (Math.PI * 2).toFloat
     })
     None
   }
