@@ -80,7 +80,10 @@ class Game extends Scene {
       case orbital: Orbital => orbital.orbitUpdate()
       case default          =>
     }
-    actors.foreach(m => m.realUpdate(this, delta))
+    actors.foreach(m => {
+      m.rotation = m.rotation % (Math.PI * 2).toFloat
+      m.realUpdate(this, delta)
+    })
     None
   }
 
