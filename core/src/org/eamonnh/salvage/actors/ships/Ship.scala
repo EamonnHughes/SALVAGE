@@ -8,7 +8,7 @@ import org.eamonnh.salvage.util._
 
 import scala.util.control.Breaks.break
 
-abstract class Ship extends Actor {
+class Ship extends Actor {
   var arch: ShipArchetype = _
   var engine: Engine = _
   var movingSlower: Boolean = false

@@ -8,8 +8,8 @@ import org.eamonnh.salvage._
 import org.eamonnh.salvage.actors.planets.cities.{City, CityI}
 import org.eamonnh.salvage.actors.{Actor, Orbital}
 import org.eamonnh.salvage.actors.planets.{BarrenSmall, MoonTiny, Planet}
-import org.eamonnh.salvage.actors.ships.Carc
-import org.eamonnh.salvage.actors.ships.components.MKI
+import org.eamonnh.salvage.actors.ships.{Carc, Corv, Ship, Vasa}
+import org.eamonnh.salvage.actors.ships.components.{MKI, MKII, Tokamak}
 import org.eamonnh.salvage.actors.stations.{Outpost, Station}
 import org.eamonnh.salvage.actors.suns.{Sun, SunI}
 import org.eamonnh.salvage.player._
@@ -44,10 +44,18 @@ class Game extends Scene {
   cityOne.cityType = new CityI()
   cityOne.relativePosition = Vec2I(5, 5)
   cityOne.name = "Riyadh A-thani"
+  val shipOne = new Ship
+  shipOne.arch = new Corv
+  shipOne.engine = new MKII
+  shipOne.location = Vec2F(0, 0)
   val player = new Player()
   player.name = "Tzadkiel"
-  def actors: List[Actor] =
-    List(sunOne, planetOne, moonOne, stationOne, cityOne, player)
+  var suns: List[Sun] = List(sunOne)
+  var planets: List[Planet] = List(planetOne, moonOne)
+  var stations: List[Station] = List(stationOne)
+  var cities: List[City] = List(cityOne)
+  var ships: List[Ship] = List(shipOne, player)
+  def actors: List[Actor] = suns ::: planets ::: stations ::: cities ::: ships
 
   def cameraLoc: Vec2F = Vec2F(
     player.location.x * screenUnit * zoom - (Geometry.ScreenWidth / 2),
@@ -60,8 +68,8 @@ class Game extends Scene {
       case default          =>
     }
     player.location = stationOne.location.copy()
-    player.arch = new Carc()
-    player.engine = new MKI()
+    player.arch = new Vasa()
+    player.engine = new Tokamak()
     new GameController(this)
   }
 

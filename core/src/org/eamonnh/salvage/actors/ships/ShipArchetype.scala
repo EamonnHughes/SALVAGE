@@ -24,3 +24,11 @@ class Corv extends ShipArchetype {
   override var deAccel: Float = .95f
   override var topSpeed: Float = .65f
 }
+
+class Vasa extends ShipArchetype {
+
+  override var sprite: TextureWrapper = TextureWrapper.load("Vasa.png")
+  override var shipClass: ShipClass = new Destroyer()
+  override var deAccel: Float = .97f
+  override var topSpeed: Float = .60f
+}

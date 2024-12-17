@@ -11,3 +11,9 @@ class Fighter extends ShipClass {
   override var size: Vec2I = Vec2I(2, 2)
 
 }
+
+class Destroyer extends ShipClass {
+
+  override var size: Vec2I = Vec2I(4, 4)
+
+}

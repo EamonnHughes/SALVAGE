@@ -28,10 +28,6 @@ class GameController(game: Game) extends InputAdapter {
     if (keycode == Keys.RIGHT || keycode == Keys.D) GameTriggers.Right = false
     if (keycode == Keys.SHIFT_LEFT || keycode == Keys.SHIFT_RIGHT)
       GameTriggers.Shift = false
-    if (keycode == Keys.Q) game.player.engine = new MKI()
-    if (keycode == Keys.E) game.player.engine = new MKII()
-    if (keycode == Keys.Z) game.player.arch = new Carc()
-    if (keycode == Keys.X) game.player.arch = new Corv()
     game.player.playerKeyUps(keycode, game)
     true
   }
