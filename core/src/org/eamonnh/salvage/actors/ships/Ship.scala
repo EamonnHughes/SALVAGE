@@ -2,7 +2,7 @@ package org.eamonnh.salvage.actors.ships
 
 import org.eamonnh.salvage.actors._
 import org.eamonnh.salvage.actors.planets.cities.City
-import org.eamonnh.salvage.actors.ships.components.{Engine, MKI}
+import org.eamonnh.salvage.actors.ships.components.{Engine, Behavior}
 import org.eamonnh.salvage.scenes.game._
 import org.eamonnh.salvage.util._
 
@@ -11,6 +11,7 @@ import scala.util.control.Breaks.break
 class Ship extends Actor {
   var arch: ShipArchetype = _
   var engine: Engine = _
+  var behavior: Option[Behavior] = None
   var movingSlower: Boolean = false
   var movingFullSpeed: Boolean = false
   var rotatingRight: Boolean = false
@@ -28,6 +29,7 @@ class Ship extends Actor {
   override def init(game: Game): Unit = {
   }
   override def update(game: Game, delta: Float): Unit = {
+    behavior.foreach(_.update(this, game))
     ControlMovement()
     if(anchorage.nonEmpty) {
       anchorage.foreach(city => {
