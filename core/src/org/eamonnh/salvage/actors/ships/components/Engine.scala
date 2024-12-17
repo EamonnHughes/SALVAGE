@@ -15,8 +15,8 @@ abstract class Engine {
 
 class MKI extends Engine {
 
-  override var forwardSpeed = .125f
-  override var turnSpeed = .05f
+  override var forwardSpeed = 12.5f
+  override var turnSpeed = 5f
   override var turnDecel = .95f
   override var slowdown = .1f
   override var sprite: TextureWrapper = TextureWrapper.load("EngineMKI.png")
@@ -25,8 +25,8 @@ class MKI extends Engine {
 
 class MKII extends Engine {
 
-  override var forwardSpeed = .05f
-  override var turnSpeed = .1f
+  override var forwardSpeed = 5f
+  override var turnSpeed = 10f
   override var turnDecel = .5f
   override var slowdown = .1f
   override var sprite: TextureWrapper = TextureWrapper.load("EngineMKII.png")
@@ -35,8 +35,8 @@ class MKII extends Engine {
 
 class Tokamak extends Engine {
 
-  override var forwardSpeed = .05f
-  override var turnSpeed = .1f
+  override var forwardSpeed = 5f
+  override var turnSpeed = 10f
   override var turnDecel = .5f
   override var slowdown = .1f
   override var sprite: TextureWrapper = TextureWrapper.load("EngineTokamak.png")

@@ -42,8 +42,8 @@ abstract class Actor {
   }
   def realUpdate(game: Game, delta: Float): Unit = {
     update(game, delta)
-    location += velocity
-    rotation += rotVel
+    location += velocity * delta
+    rotation += rotVel * delta
     lifetime += delta
   }
   def update(game: Game, delta: Float): Unit

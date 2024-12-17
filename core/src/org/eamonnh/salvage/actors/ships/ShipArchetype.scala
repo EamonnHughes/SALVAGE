@@ -15,14 +15,14 @@ class Carc extends ShipArchetype {
   override var sprite: TextureWrapper = TextureWrapper.load("Carcharodon.png")
   override var shipClass: ShipClass = new Fighter()
   override var deAccel: Float = .99f
-  override var topSpeed: Float = .5f
+  override var topSpeed: Float = 50f
 }
 class Corv extends ShipArchetype {
 
   override var sprite: TextureWrapper = TextureWrapper.load("Corvette.png")
   override var shipClass: ShipClass = new Fighter()
   override var deAccel: Float = .95f
-  override var topSpeed: Float = .65f
+  override var topSpeed: Float = 65f
 }
 
 class Vasa extends ShipArchetype {
@@ -30,5 +30,5 @@ class Vasa extends ShipArchetype {
   override var sprite: TextureWrapper = TextureWrapper.load("Vasa.png")
   override var shipClass: ShipClass = new Destroyer()
   override var deAccel: Float = .97f
-  override var topSpeed: Float = .60f
+  override var topSpeed: Float = 60f
 }
