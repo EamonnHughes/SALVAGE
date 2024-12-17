@@ -44,13 +44,16 @@ class Game extends Scene {
   cityOne.cityType = new CityI
   cityOne.relativePosition = Vec2I(5, 5)
   cityOne.name = "Riyadh A-thani"
+  val player = new Player
+  player.name = "Tzadkiel"
+  player.location = stationOne.location.copy()
+  player.arch = new Vasa
+  player.engine = new Tokamak
   val shipOne = new Ship
   shipOne.arch = new Corv
   shipOne.engine = new MKII
-  shipOne.location = Vec2F(0, 0)
-  shipOne.behavior = Some(new Convoy())
-  val player = new Player
-  player.name = "Tzadkiel"
+  shipOne.location = Vec2F(player.location.x,  player.location.x + 5)
+  shipOne.behavior = Some(new Convoy(player))
   var suns: List[Sun] = List(sunOne)
   var planets: List[Planet] = List(planetOne, moonOne)
   var stations: List[Station] = List(stationOne)
@@ -68,9 +71,6 @@ class Game extends Scene {
       case orbital: Orbital => orbital.orbitInit()
       case default          =>
     }
-    player.location = stationOne.location.copy()
-    player.arch = new Vasa
-    player.engine = new Tokamak
     new GameController(this)
   }
 
@@ -81,9 +81,9 @@ class Game extends Scene {
       case default          =>
     }
     actors.foreach(m => {
-      m.rotation = m.rotation % (Math.PI * 2).toFloat
+      m.rotation = (m.rotation + Math.PI * 2).toFloat % (Math.PI * 2).toFloat
       m.realUpdate(this, delta)
-      m.rotation = m.rotation % (Math.PI * 2).toFloat
+      m.rotation = (m.rotation + Math.PI * 2).toFloat % (Math.PI * 2).toFloat
     })
     None
   }
