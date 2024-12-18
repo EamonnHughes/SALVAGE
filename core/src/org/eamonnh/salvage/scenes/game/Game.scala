@@ -12,53 +12,26 @@ import org.eamonnh.salvage.actors.ships.{Carc, Corv, Ship, Vasa}
 import org.eamonnh.salvage.actors.ships.components.{Convoy, MKI, MKII, Tokamak}
 import org.eamonnh.salvage.actors.stations.{Outpost, Station}
 import org.eamonnh.salvage.actors.suns.{Sun, SunI}
+import org.eamonnh.salvage.generation.Generator
 import org.eamonnh.salvage.player._
 import org.eamonnh.salvage.util.{Vec2F, Vec2I}
 
 class Game extends Scene {
 
-  val sunOne = new Sun
-  sunOne.pClass = new SunI
-  sunOne.location = Vec2F(20, 20)
-  sunOne.name = "Sol Secundus"
-  val planetOne = new Planet
-  planetOne.pClass = new BarrenSmall
-  planetOne.parent = Some(sunOne)
-  planetOne.distanceOut = 256
-  planetOne.orbitalPeriod = 2000
-  planetOne.name = "New Terra"
-  val moonOne = new Planet
-  moonOne.pClass = new MoonTiny
-  moonOne.parent = Some(planetOne)
-  moonOne.distanceOut = 48
-  moonOne.orbitalPeriod = 500
-  moonOne.name = "Qamr"
-  val stationOne = new Station
-  stationOne.arch = new Outpost
-  stationOne.parent = Some(moonOne)
-  stationOne.distanceOut = 6
-  stationOne.orbitalPeriod = -50
-  stationOne.name = "Autonomous Data Unit I"
-  val cityOne = new City
-  cityOne.parent = planetOne
-  cityOne.cityType = new CityI
-  cityOne.relativePosition = Vec2I(5, 5)
-  cityOne.name = "Riyadh A-thani"
-  val player = new Player
-  player.name = "Tzadkiel"
-  player.location = stationOne.location.copy()
-  player.arch = new Vasa
-  player.engine = new Tokamak
-  val shipOne = new Ship
-  shipOne.arch = new Corv
-  shipOne.engine = new MKII
-  shipOne.location = Vec2F(player.location.x,  player.location.x + 5)
-  shipOne.behavior = Some(new Convoy(player))
-  var suns: List[Sun] = List(sunOne)
-  var planets: List[Planet] = List(planetOne, moonOne)
-  var stations: List[Station] = List(stationOne)
-  var cities: List[City] = List(cityOne)
-  var ships: List[Ship] = List(shipOne, player)
+  def player: Player = {
+    var p: List[Player] = List.empty
+    ships.foreach {
+      case player: Player => p = player :: p
+      case default =>
+    }
+    p.head
+  }
+
+  var suns: List[Sun] = List.empty
+  var planets: List[Planet] = List.empty
+  var stations: List[Station] = List.empty
+  var cities: List[City] = List.empty
+  var ships: List[Ship] = List.empty
   def actors: List[Actor] = suns ::: planets ::: stations ::: cities ::: ships
 
   def cameraLoc: Vec2F = Vec2F(
@@ -66,6 +39,12 @@ class Game extends Scene {
     player.location.y * screenUnit * zoom - (Geometry.ScreenHeight / 2)
   )
   override def init(): InputAdapter = {
+
+    Generator.game = this
+
+    Generator.generateSolarSystem(Vec2F(0, 0))
+    Generator.generatePlayer()
+
     actors.foreach(m => m.init(this))
     actors.foreach {
       case orbital: Orbital => orbital.orbitInit()
