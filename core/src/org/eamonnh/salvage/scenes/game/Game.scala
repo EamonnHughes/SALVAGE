@@ -43,6 +43,7 @@ class Game extends Scene {
     Generator.game = this
 
     Generator.generateSolarSystem(Vec2F(0, 0))
+    Generator.generateSolarSystem(Vec2F(1024, 1024))
     Generator.generatePlayer()
 
     actors.foreach(m => m.init(this))
