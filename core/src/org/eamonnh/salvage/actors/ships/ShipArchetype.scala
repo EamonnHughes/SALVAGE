@@ -14,7 +14,7 @@ class Carc extends ShipArchetype {
 
   override var sprite: TextureWrapper = TextureWrapper.load("Carcharodon.png")
   override var shipClass: ShipClass = new Fighter()
-  override var deAccel: Float = .99f
+  override var deAccel: Float = .97f
   override var topSpeed: Float = 50f
 }
 class Corv extends ShipArchetype {

@@ -4,8 +4,8 @@ import org.eamonnh.salvage.actors.Actor
 import org.eamonnh.salvage.actors.planets.cities.{City, CityI}
 import org.eamonnh.salvage.actors.planets.{BarrenSmall, MoonTiny, Planet}
 import org.eamonnh.salvage.actors.ships.behavior.{Convoy, Trader}
-import org.eamonnh.salvage.actors.ships.components.{MKII, Tokamak}
-import org.eamonnh.salvage.actors.ships.{Corv, Ship, Vasa}
+import org.eamonnh.salvage.actors.ships.components.{MKI, MKII, Tokamak}
+import org.eamonnh.salvage.actors.ships.{Carc, Corv, Ship, Vasa}
 import org.eamonnh.salvage.actors.stations.{Outpost, Station}
 import org.eamonnh.salvage.actors.suns.{Sun, SunI}
 import org.eamonnh.salvage.crew.Officer
@@ -42,8 +42,8 @@ object Generator {
       .anchorages((Math.random() * game.anchorages.length).toInt)
       .location
       .copy()
-    ship.arch = new Corv
-    ship.engine = new MKII
+    if((Math.random() * 2).toInt == 1) ship.arch = new Corv else ship.arch = new Carc
+    if((Math.random() * 2).toInt == 1) ship.engine = new MKI else ship.engine = new MKII
     ship.behavior = Some(new Trader)
     ship.captain = new Officer
     ship.captain.name = "Unnamed Trader"

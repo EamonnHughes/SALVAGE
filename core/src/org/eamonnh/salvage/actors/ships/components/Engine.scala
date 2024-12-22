@@ -17,7 +17,7 @@ class MKI extends Engine {
 
   override var forwardSpeed = 12.5f
   override var turnSpeed = 5f
-  override var turnDecel = .95f
+  override var turnDecel = .65f
   override var slowdown = .1f
   override var sprite: TextureWrapper = TextureWrapper.load("EngineMKI.png")
   override var classAllowed: ShipClass = new Fighter
