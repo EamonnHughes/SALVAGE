@@ -5,7 +5,7 @@ import org.eamonnh.salvage.actors.planets.cities.{City, CityI}
 import org.eamonnh.salvage.actors.planets.{BarrenSmall, MoonTiny, Planet}
 import org.eamonnh.salvage.actors.ships.behavior.{Convoy, Trader}
 import org.eamonnh.salvage.actors.ships.components.{MKI, MKII, Tokamak}
-import org.eamonnh.salvage.actors.ships.{Carc, Corv, Ship, Vasa}
+import org.eamonnh.salvage.actors.ships.{Carc, Corv, Destroyer, Fighter, Ship, Vasa}
 import org.eamonnh.salvage.actors.stations.{Outpost, Station}
 import org.eamonnh.salvage.actors.suns.{Sun, SunI}
 import org.eamonnh.salvage.crew.Officer
@@ -25,15 +25,7 @@ object Generator {
     player.captain = new Officer
     player.captain.name = "Severian"
     player.captain.credits = 100
-    val escortOne = new Ship
-    escortOne.arch = new Corv
-    escortOne.engine = new MKII
-    escortOne.location = Vec2F(player.location.x, player.location.y + 5)
-    escortOne.behavior = Some(new Convoy(player))
-    escortOne.captain = new Officer()
-    escortOne.captain.name = "Baldanders"
-    escortOne.captain.credits = 10
-    game.ships = player :: escortOne :: game.ships
+    game.ships = player :: game.ships
   }
   def generateTrader(): Unit = {
     var ship = new Ship
@@ -42,13 +34,35 @@ object Generator {
       .anchorages((Math.random() * game.anchorages.length).toInt)
       .location
       .copy()
-    if((Math.random() * 2).toInt == 1) ship.arch = new Corv else ship.arch = new Carc
-    if((Math.random() * 2).toInt == 1) ship.engine = new MKI else ship.engine = new MKII
+    if((Math.random() * 2).toInt == 1) {
+      ship.arch = new Corv
+    } else if((Math.random() * 2).toInt == 1) {
+      ship.arch = new Carc
+    } else ship.arch = new Vasa
+    ship.arch.shipClass match {
+      case _: Fighter =>
+        if ((Math.random() * 2).toInt == 1) ship.engine = new MKI else ship.engine = new MKII
+      case _: Destroyer =>
+        ship.engine = new Tokamak
+      case _ =>
+    }
     ship.behavior = Some(new Trader)
     ship.captain = new Officer
     ship.captain.name = "Unnamed Trader"
     ship.captain.credits = 1000
     game.ships = ship :: game.ships
+    if(ship.arch.shipClass.isInstanceOf[Destroyer]) {
+      val escortOne = new Ship
+      escortOne.arch = new Corv
+      escortOne.engine = new MKII
+      escortOne.location = Vec2F(ship.location.x, ship.location.y + 5)
+      escortOne.behavior = Some(new Convoy(ship))
+      escortOne.captain = new Officer()
+      escortOne.captain.name = "Unnamed Pilot"
+      escortOne.captain.credits = 10
+      escortOne.name = "Escort of " + ship.name
+      game.ships = escortOne :: game.ships
+    }
   }
 
   def generateSolarSystem(location: Vec2F): Unit = {
