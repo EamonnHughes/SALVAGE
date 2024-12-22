@@ -1,6 +1,6 @@
 package org.eamonnh.salvage.scenes.game
 
-import com.badlogic.gdx.InputAdapter
+import com.badlogic.gdx.{Gdx, InputAdapter}
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.g2d.PolygonSpriteBatch
 import com.badlogic.gdx.math.Matrix4
@@ -14,7 +14,7 @@ import org.eamonnh.salvage.actors.stations.{Outpost, Station}
 import org.eamonnh.salvage.actors.suns.{Sun, SunI}
 import org.eamonnh.salvage.generation.Generator
 import org.eamonnh.salvage.player._
-import org.eamonnh.salvage.ui.Menu
+import org.eamonnh.salvage.menus.{AnchorageMenu, Menu}
 import org.eamonnh.salvage.util.{Vec2F, Vec2I}
 
 class Game extends Scene {
@@ -35,10 +35,16 @@ class Game extends Scene {
   var ships: List[Ship] = List.empty
   def actors: List[Actor] = suns ::: planets ::: stations ::: cities ::: ships
 
-  def cameraLoc: Vec2F = Vec2F(
+  def cameraLoc: Vec2F = if(player.anchorage.nonEmpty) {
+    Vec2F(
+      player.anchorage.head.location.x * screenUnit * zoom - (Geometry.ScreenWidth / 2),
+      player.anchorage.head.location.y * screenUnit * zoom - (Geometry.ScreenHeight / 2)
+    )
+  } else { Vec2F(
     player.location.x * screenUnit * zoom - (Geometry.ScreenWidth / 2),
     player.location.y * screenUnit * zoom - (Geometry.ScreenHeight / 2)
-  )
+  ) }
+
   override def init(): InputAdapter = {
 
     Generator.game = this
@@ -56,6 +62,11 @@ class Game extends Scene {
   }
 
   override def update(delta: Float): Option[Scene] = {
+    if (menu.isEmpty && player.anchorage.nonEmpty) menu = Some(new AnchorageMenu(this))
+    if(menu.isEmpty) realUpdate(delta)
+    None
+  }
+  def realUpdate(delta: Float): Unit = {
     player.playerUpdate(this, delta)
     actors.foreach {
       case orbital: Orbital => orbital.orbitUpdate()
@@ -66,7 +77,6 @@ class Game extends Scene {
       m.realUpdate(this, delta)
       m.rotation = (m.rotation + Math.PI * 2).toFloat % (Math.PI * 2).toFloat
     })
-    None
   }
 
   override def render(batch: PolygonSpriteBatch): Unit = {
@@ -80,13 +90,16 @@ class Game extends Scene {
   }
 
   def drawUI(batch: PolygonSpriteBatch): Unit = {
+    batch.setColor(0f, 0f, 0f, .1f)
     batch.draw(Salvage.Square, 0, 0, Geometry.ScreenWidth, screenUnit * 1.5f)
+    batch.setColor(Color.WHITE)
     var vicinity = "Space, near " + player.nearestSun(this).name
     player.anchorage.foreach(a => {
       vicinity = a.name + ", " + a.parent.name + ", near " + player.nearestSun(this).name
     })
     var resources = player.captain.credits + " credits"
-    Text.smallFont.setColor(Color.BLACK)
+    Text.smallFont.setColor(Color.WHITE)
     Text.smallFont.draw(batch, vicinity + " | " + resources, 0, screenUnit)
+    Text.smallFont.setColor(Color.BLACK)
   }
 }

@@ -24,7 +24,6 @@ class StartControl(start: Start) extends InputAdapter {
   }
 
   override def keyDown(keycode: Int): Boolean = {
-    if (keycode == Keys.SPACE) start.ready = true
     true
   }
 }

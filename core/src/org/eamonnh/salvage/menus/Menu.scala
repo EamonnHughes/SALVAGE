@@ -1,4 +1,4 @@
-package org.eamonnh.salvage.ui
+package org.eamonnh.salvage.menus
 
 import com.badlogic.gdx.graphics.g2d.PolygonSpriteBatch
 import org.eamonnh.salvage.Scene

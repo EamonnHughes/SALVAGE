@@ -16,6 +16,10 @@ class GameController(game: Game) extends InputAdapter {
     true
   }
 
+  override def touchUp(screenX: Int, screenY: Int, pointer: Int, button: Int): Boolean = {
+    game.menu.foreach(_.items.foreach(_.update(game)))
+    true
+  }
   override def mouseMoved(screenX: Int, screenY: Int): Boolean = {
 
     true

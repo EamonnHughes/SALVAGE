@@ -2,7 +2,7 @@ package org.eamonnh.salvage
 
 import com.badlogic.gdx.InputAdapter
 import com.badlogic.gdx.graphics.g2d.PolygonSpriteBatch
-import org.eamonnh.salvage.ui.Menu
+import org.eamonnh.salvage.menus.Menu
 
 abstract class Scene {
   def menu: Option[Menu]

@@ -1,4 +1,4 @@
-package org.eamonnh.salvage.ui
+package org.eamonnh.salvage.menus
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Color
@@ -27,7 +27,7 @@ abstract class Button extends MenuItem {
 
   override def update(scene: Scene): Unit = {
     if((Gdx.input.getX()  > location.x * screenUnit && Gdx.input.getX() < (location.x + size.x) * screenUnit) &&
-      (Gdx.input.getY()  > location.y * screenUnit && Gdx.input.getY() < (location.y + size.y) * screenUnit)) {
+      (Geometry.ScreenHeight -Gdx.input.getY()  > location.y * screenUnit && Geometry.ScreenHeight -Gdx.input.getY() < (location.y + size.y) * screenUnit)) {
       onPress(scene)
     }
   }
