@@ -107,7 +107,7 @@ object Generator {
     stationOne.parent = Some(parent)
     stationOne.distanceOut = 6
     stationOne.orbitalPeriod = -50
-    stationOne.name = "Autonomous Data Unit " + (Math.random() * 100).toInt
+    stationOne.name = "Autonomous Unit " + (Math.random() * 100).toInt
     var rots = (Math.random() * 100).toInt
     for (i <- 0 until rots) {
       stationOne.lifetime += rots
