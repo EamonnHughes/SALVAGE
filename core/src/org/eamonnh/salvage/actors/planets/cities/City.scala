@@ -1,10 +1,10 @@
 package org.eamonnh.salvage.actors.planets.cities
 
-import org.eamonnh.salvage.actors.Actor
+import org.eamonnh.salvage.actors.{Actor, Anchorage}
 import org.eamonnh.salvage.scenes.game.Game
 import org.eamonnh.salvage.util.{TextureWrapper, Vec2F, Vec2I}
 
-class City extends Actor {
+class City extends Actor with Anchorage {
 
   var parent: Actor = _
   var cityType: CityType = _

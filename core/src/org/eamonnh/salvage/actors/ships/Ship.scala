@@ -19,7 +19,7 @@ class Ship extends Actor {
   var cargo: List[Cargo] = List.empty
   var captain: Officer = _
 
-  var anchorage: Option[City] = None
+  var anchorage: Option[Anchorage] = None
 
   override def deRotAccel = engine.turnDecel
   override def deAccel = arch.deAccel
@@ -34,8 +34,8 @@ class Ship extends Actor {
     behavior.foreach(_.update(this, game))
     ControlMovement()
     if (anchorage.nonEmpty) {
-      anchorage.foreach(city => {
-        location = city.location
+      anchorage.foreach(a => {
+        location = a.location
       })
     } else {
       DoPhysics()
@@ -74,12 +74,12 @@ class Ship extends Actor {
   def TryToLand(game: Game): Unit = {
     if (
       game.actors.exists(a =>
-        a.isInstanceOf[City] && a.location.distanceFrom(location) < a.size.x / 2
+        a.isInstanceOf[Anchorage] && a.location.distanceFrom(location) < a.size.x / 2
       )
     ) {
       anchorage = Some(
         game.actors
-          .collect({ case city: City => city })
+          .collect({ case anchorage: Anchorage => anchorage })
           .minBy(a => a.location.distanceFrom(location))
       )
     }

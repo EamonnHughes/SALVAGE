@@ -96,10 +96,10 @@ class Game extends Scene {
     batch.draw(Salvage.Square, 0, 0, Geometry.ScreenWidth, screenUnit * 1.5f)
     batch.setColor(Color.WHITE)
     var vicinity = "Space, near " + player.nearestSun(this).name
-    player.anchorage.foreach(a => {
-      vicinity =
-        a.name + ", " + a.parent.name + ", near " + player.nearestSun(this).name
-    })
+    player.anchorage.foreach {
+      case city: City => vicinity = city.name + ", " + city.parent.name + ", near " + player.nearestSun(this).name
+      case station: Station => vicinity = station.name + ", near " + player.nearestSun(this).name
+    }
     var resources = player.captain.credits + " credits"
     Text.smallFont.setColor(Color.WHITE)
     Text.smallFont.draw(batch, vicinity + " | " + resources, 0, screenUnit)

@@ -4,7 +4,7 @@ import org.eamonnh.salvage.actors._
 import org.eamonnh.salvage.scenes.game._
 import org.eamonnh.salvage.util._
 
-class Station extends Actor with Orbital {
+class Station extends Actor with Orbital with Anchorage {
   var arch: StationArchetype = _
 
   override var parent: Option[Actor] = None
