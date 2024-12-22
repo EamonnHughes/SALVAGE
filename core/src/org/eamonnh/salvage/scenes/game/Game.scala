@@ -10,7 +10,7 @@ import org.eamonnh.salvage.actors.planets.cities.City
 import org.eamonnh.salvage.actors.ships.Ship
 import org.eamonnh.salvage.actors.stations.Station
 import org.eamonnh.salvage.actors.suns.Sun
-import org.eamonnh.salvage.actors.{Actor, Orbital}
+import org.eamonnh.salvage.actors.{Actor, Anchorage, Orbital}
 import org.eamonnh.salvage.generation.Generator
 import org.eamonnh.salvage.menus.{AnchorageMenu, Menu}
 import org.eamonnh.salvage.player._
@@ -33,6 +33,14 @@ class Game extends Scene {
   var cities: List[City] = List.empty
   var ships: List[Ship] = List.empty
   def actors: List[Actor] = suns ::: planets ::: stations ::: cities ::: ships
+  def anchorages: List[Anchorage] = {
+    var a: List[Anchorage] = List.empty
+    actors.foreach({
+      case anchorage: Anchorage => a = anchorage :: a
+      case default =>
+    })
+    a
+  }
 
   def cameraLoc: Vec2F = if (player.anchorage.nonEmpty) {
     Vec2F(
@@ -53,6 +61,9 @@ class Game extends Scene {
     Generator.generateSolarSystem(Vec2F(0, 0))
     Generator.generateSolarSystem(Vec2F(1024, 1024))
     Generator.generatePlayer()
+    for(i <- 0 until 20) {
+      Generator.generateTrader()
+    }
 
     actors.foreach(m => m.init(this))
     actors.foreach {

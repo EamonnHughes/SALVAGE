@@ -2,7 +2,8 @@ package org.eamonnh.salvage.actors.ships
 
 import org.eamonnh.salvage.actors._
 import org.eamonnh.salvage.actors.planets.cities.City
-import org.eamonnh.salvage.actors.ships.components.{Behavior, Engine}
+import org.eamonnh.salvage.actors.ships.behavior.Behavior
+import org.eamonnh.salvage.actors.ships.components.Engine
 import org.eamonnh.salvage.cargo.Cargo
 import org.eamonnh.salvage.crew.Officer
 import org.eamonnh.salvage.scenes.game._

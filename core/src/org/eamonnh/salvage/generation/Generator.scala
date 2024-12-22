@@ -1,9 +1,10 @@
 package org.eamonnh.salvage.generation
 
-import org.eamonnh.salvage.actors.Actor
+import org.eamonnh.salvage.actors.{Actor, ships}
 import org.eamonnh.salvage.actors.planets.cities.{City, CityI}
 import org.eamonnh.salvage.actors.planets.{BarrenSmall, MoonTiny, Planet}
-import org.eamonnh.salvage.actors.ships.components.{Convoy, MKII, Tokamak}
+import org.eamonnh.salvage.actors.ships.behavior.{Convoy, Trader}
+import org.eamonnh.salvage.actors.ships.components.{MKII, Tokamak}
 import org.eamonnh.salvage.actors.ships.{Corv, Ship, Vasa}
 import org.eamonnh.salvage.actors.stations.{Outpost, Station}
 import org.eamonnh.salvage.actors.suns.{Sun, SunI}
@@ -21,7 +22,7 @@ object Generator {
     player.location = game.stations.head.location.copy()
     player.arch = new Vasa
     player.engine = new Tokamak
-    player.captain = new Officer()
+    player.captain = new Officer
     player.captain.name = "Severian"
     player.captain.credits = 100
     val escortOne = new Ship
@@ -33,6 +34,18 @@ object Generator {
     escortOne.captain.name = "Baldanders"
     escortOne.captain.credits = 10
     game.ships = player :: escortOne :: game.ships
+  }
+  def generateTrader(): Unit = {
+    var ship = new Ship
+    ship.name = "Trader " + (Math.random() * 100).toInt
+    ship.location = game.anchorages((Math.random() * game.anchorages.length).toInt).location.copy()
+    ship.arch = new Corv
+    ship.engine = new MKII
+    ship.behavior = Some(new Trader)
+    ship.captain = new Officer
+    ship.captain.name = "Unnamed Trader"
+    ship.captain.credits = 1000
+    game.ships = ship :: game.ships
   }
 
   def generateSolarSystem(location: Vec2F): Unit = {
@@ -91,7 +104,7 @@ object Generator {
     stationOne.parent = Some(parent)
     stationOne.distanceOut = 6
     stationOne.orbitalPeriod = -50
-    stationOne.name = "Autonomous Data Unit I"
+    stationOne.name = "Autonomous Data Unit " + (Math.random() * 100).toInt
     var rots = (Math.random() * 100).toInt
     for (i <- 0 until rots) {
       stationOne.lifetime += rots
