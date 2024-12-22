@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.g2d.PolygonSpriteBatch
 import com.badlogic.gdx.math.Matrix4
 import com.badlogic.gdx.utils.ScreenUtils
 import com.badlogic.gdx.{ApplicationAdapter, Gdx, Input}
-import org.eamonnh.salvage.scenes.home.Home
+import org.eamonnh.salvage.scenes.start.Start
 import org.eamonnh.salvage.util.{GarbageCan, TextureWrapper}
 
 class Salvage extends ApplicationAdapter {
@@ -31,7 +31,7 @@ class Salvage extends ApplicationAdapter {
 
     Text.loadFonts()
 
-    setScene(new Home)
+    setScene(new Start)
   }
 
   override def render(): Unit = {
@@ -42,6 +42,7 @@ class Salvage extends ApplicationAdapter {
     batch.setTransformMatrix(new Matrix4())
     batch.begin()
     scene.render(batch)
+    scene.renderUI(batch)
     batch.end()
   }
 
@@ -59,7 +60,6 @@ class Salvage extends ApplicationAdapter {
 object Salvage {
   implicit val garbage: GarbageCan = new GarbageCan
 
-  def screenUnit = (Geometry.ScreenWidth min Geometry.ScreenHeight) / 40
   var sound: Sound = _
   var Square: TextureWrapper = _
   var Circle: TextureWrapper = _

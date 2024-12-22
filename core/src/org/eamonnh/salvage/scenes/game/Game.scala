@@ -14,10 +14,11 @@ import org.eamonnh.salvage.actors.stations.{Outpost, Station}
 import org.eamonnh.salvage.actors.suns.{Sun, SunI}
 import org.eamonnh.salvage.generation.Generator
 import org.eamonnh.salvage.player._
+import org.eamonnh.salvage.ui.Menu
 import org.eamonnh.salvage.util.{Vec2F, Vec2I}
 
 class Game extends Scene {
-
+  var menu: Option[Menu] = None
   def player: Player = {
     var p: List[Player] = List.empty
     ships.foreach {
@@ -79,12 +80,13 @@ class Game extends Scene {
   }
 
   def drawUI(batch: PolygonSpriteBatch): Unit = {
-    batch.draw(Salvage.Square, 0, 0, Geometry.ScreenWidth, screenUnit)
+    batch.draw(Salvage.Square, 0, 0, Geometry.ScreenWidth, screenUnit * 1.5f)
     var vicinity = "Space, near " + player.nearestSun(this).name
     player.anchorage.foreach(a => {
       vicinity = a.name + ", " + a.parent.name + ", near " + player.nearestSun(this).name
     })
+    var resources = player.captain.credits + " credits"
     Text.smallFont.setColor(Color.BLACK)
-    Text.smallFont.draw(batch, vicinity, 0, screenUnit)
+    Text.smallFont.draw(batch, vicinity + " | " + resources, 0, screenUnit)
   }
 }

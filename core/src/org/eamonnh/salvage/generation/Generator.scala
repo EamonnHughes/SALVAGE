@@ -7,6 +7,7 @@ import org.eamonnh.salvage.actors.ships.{Carc, Corv, Ship, Vasa}
 import org.eamonnh.salvage.actors.ships.components.{Convoy, MKI, MKII, Tokamak}
 import org.eamonnh.salvage.actors.stations.{Outpost, Station}
 import org.eamonnh.salvage.actors.suns.{Sun, SunI}
+import org.eamonnh.salvage.crew.Officer
 import org.eamonnh.salvage.player.Player
 import org.eamonnh.salvage.scenes.game.Game
 import org.eamonnh.salvage.util.{Vec2F, Vec2I}
@@ -20,11 +21,17 @@ object Generator {
     player.location = game.stations.head.location.copy()
     player.arch = new Vasa
     player.engine = new Tokamak
+    player.captain = new Officer()
+    player.captain.name = "Severian"
+    player.captain.credits = 100
     val escortOne = new Ship
     escortOne.arch = new Corv
     escortOne.engine = new MKII
     escortOne.location = Vec2F(player.location.x,  player.location.y + 5)
     escortOne.behavior = Some(new Convoy(player))
+    escortOne.captain = new Officer()
+    escortOne.captain.name = "Baldanders"
+    escortOne.captain.credits = 10
     game.ships = player :: escortOne :: game.ships
   }
 

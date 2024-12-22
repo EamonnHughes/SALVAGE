@@ -2,7 +2,9 @@ package org.eamonnh.salvage.actors.ships
 
 import org.eamonnh.salvage.actors._
 import org.eamonnh.salvage.actors.planets.cities.City
-import org.eamonnh.salvage.actors.ships.components.{Engine, Behavior}
+import org.eamonnh.salvage.actors.ships.components.{Behavior, Engine}
+import org.eamonnh.salvage.cargo.Cargo
+import org.eamonnh.salvage.crew.Officer
 import org.eamonnh.salvage.scenes.game._
 import org.eamonnh.salvage.util._
 
@@ -16,6 +18,8 @@ class Ship extends Actor {
   var movingFullSpeed: Boolean = false
   var rotatingRight: Boolean = false
   var rotatingLeft: Boolean = false
+  var cargo: List[Cargo] = List.empty
+  var captain: Officer = _
 
   var anchorage: Option[City] = None
 
