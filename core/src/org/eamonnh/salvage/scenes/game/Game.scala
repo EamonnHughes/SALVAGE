@@ -37,7 +37,7 @@ class Game extends Scene {
     var a: List[Anchorage] = List.empty
     actors.foreach({
       case anchorage: Anchorage => a = anchorage :: a
-      case default =>
+      case default              =>
     })
     a
   }
@@ -61,7 +61,7 @@ class Game extends Scene {
     Generator.generateSolarSystem(Vec2F(0, 0))
     Generator.generateSolarSystem(Vec2F(1024, 1024))
     Generator.generatePlayer()
-    for(i <- 0 until 40) {
+    for (i <- 0 until 40) {
       Generator.generateTrader()
     }
 
@@ -108,8 +108,12 @@ class Game extends Scene {
     batch.setColor(Color.WHITE)
     var vicinity = "Space, near " + player.nearestSun(this).name
     player.anchorage.foreach {
-      case city: City => vicinity = city.name + ", " + city.parent.name + ", near " + player.nearestSun(this).name
-      case station: Station => vicinity = station.name + ", near " + player.nearestSun(this).name
+      case city: City =>
+        vicinity = city.name + ", " + city.parent.name + ", near " + player
+          .nearestSun(this)
+          .name
+      case station: Station =>
+        vicinity = station.name + ", near " + player.nearestSun(this).name
     }
     var resources = player.captain.credits + " credits"
     Text.smallFont.setColor(Color.WHITE)

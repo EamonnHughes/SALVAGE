@@ -1,6 +1,6 @@
 package org.eamonnh.salvage.generation
 
-import org.eamonnh.salvage.actors.{Actor, ships}
+import org.eamonnh.salvage.actors.Actor
 import org.eamonnh.salvage.actors.planets.cities.{City, CityI}
 import org.eamonnh.salvage.actors.planets.{BarrenSmall, MoonTiny, Planet}
 import org.eamonnh.salvage.actors.ships.behavior.{Convoy, Trader}
@@ -38,7 +38,10 @@ object Generator {
   def generateTrader(): Unit = {
     var ship = new Ship
     ship.name = "Trader " + (Math.random() * 100).toInt
-    ship.location = game.anchorages((Math.random() * game.anchorages.length).toInt).location.copy()
+    ship.location = game
+      .anchorages((Math.random() * game.anchorages.length).toInt)
+      .location
+      .copy()
     ship.arch = new Corv
     ship.engine = new MKII
     ship.behavior = Some(new Trader)

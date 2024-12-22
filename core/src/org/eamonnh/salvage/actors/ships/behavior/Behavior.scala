@@ -6,4 +6,3 @@ import org.eamonnh.salvage.scenes.game.Game
 abstract class Behavior {
   def update(ship: Ship, game: Game, delta: Float): Unit
 }
-

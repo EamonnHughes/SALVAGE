@@ -1,7 +1,6 @@
 package org.eamonnh.salvage.actors.ships
 
 import org.eamonnh.salvage.actors._
-import org.eamonnh.salvage.actors.planets.cities.City
 import org.eamonnh.salvage.actors.ships.behavior.Behavior
 import org.eamonnh.salvage.actors.ships.components.Engine
 import org.eamonnh.salvage.cargo.Cargo
@@ -75,7 +74,8 @@ class Ship extends Actor {
   def TryToLand(game: Game): Unit = {
     if (
       game.actors.exists(a =>
-        a.isInstanceOf[Anchorage] && a.location.distanceFrom(location) < a.size.x / 2
+        a.isInstanceOf[Anchorage] && a.location
+          .distanceFrom(location) < a.size.x / 2
       )
     ) {
       anchorage = Some(
