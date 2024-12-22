@@ -4,7 +4,7 @@ import org.eamonnh.salvage.actors.ships.Ship
 import org.eamonnh.salvage.scenes.game.Game
 
 class Convoy(target: Ship) extends Behavior {
-  override def update(ship: Ship, game: Game): Unit = {
+  override def update(ship: Ship, game: Game, delta: Float): Unit = {
     def targetRot = {
       if (ship.location.distanceFrom(target.location) < 5) {
         target.rotation

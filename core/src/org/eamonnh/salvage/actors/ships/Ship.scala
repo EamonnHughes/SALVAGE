@@ -32,11 +32,11 @@ class Ship extends Actor {
 
   override def init(game: Game): Unit = {}
   override def update(game: Game, delta: Float): Unit = {
-    behavior.foreach(_.update(this, game))
+    behavior.foreach(_.update(this, game, delta))
     ControlMovement()
     if (anchorage.nonEmpty) {
       anchorage.foreach(a => {
-        location = a.location
+        location = a.location.copy()
       })
     } else {
       DoPhysics()

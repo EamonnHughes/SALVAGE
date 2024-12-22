@@ -61,7 +61,7 @@ class Game extends Scene {
     Generator.generateSolarSystem(Vec2F(0, 0))
     Generator.generateSolarSystem(Vec2F(1024, 1024))
     Generator.generatePlayer()
-    for(i <- 0 until 20) {
+    for(i <- 0 until 40) {
       Generator.generateTrader()
     }
 

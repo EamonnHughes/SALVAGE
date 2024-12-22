@@ -7,11 +7,24 @@ import org.eamonnh.salvage.scenes.game.Game
 import org.eamonnh.salvage.util.Vec2F
 
 class Trader extends Behavior {
+  var ashoreTime = 0f
+  var maxAshoreTime = 5f + (Math.random() * 10).toFloat
   var target: Option[Anchorage] = None
-  override def update(ship: Ship, game: Game): Unit = {
+  override def update(ship: Ship, game: Game, delta: Float): Unit = {
     if(target.isEmpty) {
       target = Some(game.anchorages((Math.random() * game.anchorages.length).toInt))
     }
+    if(ship.anchorage.nonEmpty) {
+      ashoreTime += delta
+      if(ashoreTime >= maxAshoreTime) {
+        ashoreTime = 0f
+        ship.anchorage = None
+        target = Some(game.anchorages.filterNot(a => a eq target.head)((Math.random() * game.anchorages.filterNot(_ eq target.head).length).toInt))
+      }
+    } else {
+      if(ship.location.distanceFrom(target.head.location) < 5) {
+        ship.TryToLand(game)
+      }
     def targetRot = {
       (Math.atan2(
         target.head.location.y - ship.location.y,
@@ -27,14 +40,13 @@ class Trader extends Behavior {
       } else {
         ship.rotatingLeft = true
         ship.rotatingRight = false
-        target = Some(game.anchorages((Math.random() * game.anchorages.length).toInt))
       }
     } else {
       ship.rotatingRight = false
       ship.rotatingLeft = false
     }
     if (Math.min(t1, t2) < (Math.PI / 4)) {
-      if (ship.location.distanceFrom(target.head.location) > 256) {
+      if (ship.location.distanceFrom(target.head.location) > 128) {
         ship.movingFullSpeed = true
         ship.movingSlower = false
       } else if (ship.location.distanceFrom(target.head.location) > 1) {
@@ -49,4 +61,5 @@ class Trader extends Behavior {
       ship.movingSlower = false
     }
   }
+}
 }
