@@ -35,10 +35,7 @@ class Player extends Ship {
   }
   def playerKeyUps(keycode: Int, game: Game): Unit = {
     if (keycode == Keys.L) {
-      if (anchorage.nonEmpty) anchorage = None
-      else {
-        TryToLand(game)
-      }
+      TryToLand(game)
     }
   }
 }

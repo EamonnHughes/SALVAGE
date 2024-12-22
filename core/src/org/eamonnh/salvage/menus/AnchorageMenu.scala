@@ -16,7 +16,7 @@ class AnchorageMenu(scene: Scene) extends Menu(scene) {
 class Background extends MenuItem {
 
   override def draw(batch: PolygonSpriteBatch): Unit = {
-    batch.setColor(0f, 0f, 0f, .4f)
+    batch.setColor(0f, 0f, 0f, .7f)
     batch.draw(
       Salvage.Square,
       screenUnit * 2,
@@ -35,8 +35,8 @@ class LeaveButton extends Button {
     Text.mediumFont.draw(
       batch,
       "Exit",
-      location.x * screenUnit,
-      (location.y + 2) * screenUnit
+      (location.x + .1f) * screenUnit,
+      (location.y + 1.9f) * screenUnit
     )
   }
 

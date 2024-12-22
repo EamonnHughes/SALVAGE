@@ -17,8 +17,8 @@ class StartButton extends Button {
     Text.mediumFont.draw(
       batch,
       "Play",
-      location.x * screenUnit,
-      (location.y + 2) * screenUnit
+      (location.x + .1f) * screenUnit,
+      (location.y + 1.9f) * screenUnit
     )
   }
 
