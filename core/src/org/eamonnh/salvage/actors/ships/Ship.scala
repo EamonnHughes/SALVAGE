@@ -8,8 +8,6 @@ import org.eamonnh.salvage.crew.Officer
 import org.eamonnh.salvage.scenes.game._
 import org.eamonnh.salvage.util._
 
-import scala.util.control.Breaks.break
-
 class Ship extends Actor {
   var arch: ShipArchetype = _
   var engine: Engine = _
@@ -28,14 +26,14 @@ class Ship extends Actor {
   override def topSpeed = arch.topSpeed
   override def size = arch.shipClass.size
 
-  override def sprites: List[TextureWrapper] = if(anchorage.isEmpty) List(engine.sprite, arch.sprite) else List.empty
+  override def sprites: List[TextureWrapper] =
+    if (anchorage.isEmpty) List(engine.sprite, arch.sprite) else List.empty
 
-  override def init(game: Game): Unit = {
-  }
+  override def init(game: Game): Unit = {}
   override def update(game: Game, delta: Float): Unit = {
     behavior.foreach(_.update(this, game))
     ControlMovement()
-    if(anchorage.nonEmpty) {
+    if (anchorage.nonEmpty) {
       anchorage.foreach(city => {
         location = city.location
       })
@@ -74,8 +72,16 @@ class Ship extends Actor {
   }
 
   def TryToLand(game: Game): Unit = {
-    if(game.actors.exists(a => a.isInstanceOf[City] && a.location.distanceFrom(location) < a.size.x/2)) {
-        anchorage = Some(game.actors.collect({ case city: City => city}).minBy(a => a.location.distanceFrom(location)))
+    if (
+      game.actors.exists(a =>
+        a.isInstanceOf[City] && a.location.distanceFrom(location) < a.size.x / 2
+      )
+    ) {
+      anchorage = Some(
+        game.actors
+          .collect({ case city: City => city })
+          .minBy(a => a.location.distanceFrom(location))
+      )
     }
   }
 }

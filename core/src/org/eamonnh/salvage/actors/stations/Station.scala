@@ -17,7 +17,5 @@ class Station extends Actor with Orbital {
   override def sprites: List[TextureWrapper] = List(arch.sprite)
 
   override def init(game: Game): Unit = {}
-  override def update(game: Game, delta: Float): Unit = {
-
-  }
+  override def update(game: Game, delta: Float): Unit = {}
 }

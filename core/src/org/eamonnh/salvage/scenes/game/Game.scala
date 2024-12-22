@@ -1,21 +1,20 @@
 package org.eamonnh.salvage.scenes.game
 
-import com.badlogic.gdx.{Gdx, InputAdapter}
+import com.badlogic.gdx.InputAdapter
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.g2d.PolygonSpriteBatch
 import com.badlogic.gdx.math.Matrix4
 import org.eamonnh.salvage._
-import org.eamonnh.salvage.actors.planets.cities.{City, CityI}
+import org.eamonnh.salvage.actors.planets.Planet
+import org.eamonnh.salvage.actors.planets.cities.City
+import org.eamonnh.salvage.actors.ships.Ship
+import org.eamonnh.salvage.actors.stations.Station
+import org.eamonnh.salvage.actors.suns.Sun
 import org.eamonnh.salvage.actors.{Actor, Orbital}
-import org.eamonnh.salvage.actors.planets.{BarrenSmall, MoonTiny, Planet}
-import org.eamonnh.salvage.actors.ships.{Carc, Corv, Ship, Vasa}
-import org.eamonnh.salvage.actors.ships.components.{Convoy, MKI, MKII, Tokamak}
-import org.eamonnh.salvage.actors.stations.{Outpost, Station}
-import org.eamonnh.salvage.actors.suns.{Sun, SunI}
 import org.eamonnh.salvage.generation.Generator
-import org.eamonnh.salvage.player._
 import org.eamonnh.salvage.menus.{AnchorageMenu, Menu}
-import org.eamonnh.salvage.util.{Vec2F, Vec2I}
+import org.eamonnh.salvage.player._
+import org.eamonnh.salvage.util.Vec2F
 
 class Game extends Scene {
   var menu: Option[Menu] = None
@@ -23,7 +22,7 @@ class Game extends Scene {
     var p: List[Player] = List.empty
     ships.foreach {
       case player: Player => p = player :: p
-      case default =>
+      case default        =>
     }
     p.head
   }
@@ -35,15 +34,17 @@ class Game extends Scene {
   var ships: List[Ship] = List.empty
   def actors: List[Actor] = suns ::: planets ::: stations ::: cities ::: ships
 
-  def cameraLoc: Vec2F = if(player.anchorage.nonEmpty) {
+  def cameraLoc: Vec2F = if (player.anchorage.nonEmpty) {
     Vec2F(
       player.anchorage.head.location.x * screenUnit * zoom - (Geometry.ScreenWidth / 2),
       player.anchorage.head.location.y * screenUnit * zoom - (Geometry.ScreenHeight / 2)
     )
-  } else { Vec2F(
-    player.location.x * screenUnit * zoom - (Geometry.ScreenWidth / 2),
-    player.location.y * screenUnit * zoom - (Geometry.ScreenHeight / 2)
-  ) }
+  } else {
+    Vec2F(
+      player.location.x * screenUnit * zoom - (Geometry.ScreenWidth / 2),
+      player.location.y * screenUnit * zoom - (Geometry.ScreenHeight / 2)
+    )
+  }
 
   override def init(): InputAdapter = {
 
@@ -62,8 +63,9 @@ class Game extends Scene {
   }
 
   override def update(delta: Float): Option[Scene] = {
-    if (menu.isEmpty && player.anchorage.nonEmpty) menu = Some(new AnchorageMenu(this))
-    if(menu.isEmpty) realUpdate(delta)
+    if (menu.isEmpty && player.anchorage.nonEmpty)
+      menu = Some(new AnchorageMenu(this))
+    if (menu.isEmpty) realUpdate(delta)
     None
   }
   def realUpdate(delta: Float): Unit = {
@@ -95,7 +97,8 @@ class Game extends Scene {
     batch.setColor(Color.WHITE)
     var vicinity = "Space, near " + player.nearestSun(this).name
     player.anchorage.foreach(a => {
-      vicinity = a.name + ", " + a.parent.name + ", near " + player.nearestSun(this).name
+      vicinity =
+        a.name + ", " + a.parent.name + ", near " + player.nearestSun(this).name
     })
     var resources = player.captain.credits + " credits"
     Text.smallFont.setColor(Color.WHITE)

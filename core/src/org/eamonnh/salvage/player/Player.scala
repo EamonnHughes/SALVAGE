@@ -7,7 +7,9 @@ import org.eamonnh.salvage.scenes.game.{Game, GameTriggers}
 
 class Player extends Ship {
 
-  def nearestSun(game: Game): Sun = game.actors.collect({ case sun: Sun => sun }).minBy(a => a.location.distanceFrom(location))
+  def nearestSun(game: Game): Sun = game.actors
+    .collect({ case sun: Sun => sun })
+    .minBy(a => a.location.distanceFrom(location))
 
   def playerUpdate(game: Game, delta: Float): Unit = {
     if (GameTriggers.Forward) {
@@ -32,8 +34,9 @@ class Player extends Ship {
     }
   }
   def playerKeyUps(keycode: Int, game: Game): Unit = {
-    if(keycode == Keys.L){
-      if(anchorage.nonEmpty) anchorage = None else {
+    if (keycode == Keys.L) {
+      if (anchorage.nonEmpty) anchorage = None
+      else {
         TryToLand(game)
       }
     }

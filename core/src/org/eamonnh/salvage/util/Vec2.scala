@@ -25,7 +25,8 @@ case class Vec2F(var x: Float, var y: Float) {
 
   def asInt: Vec2I = Vec2I(x.round, y.round)
 
-  def distanceFrom(vecII: Vec2F): Float = Math.sqrt(Math.pow(x - vecII.x, 2) + Math.pow(y - vecII.y, 2)).toFloat
+  def distanceFrom(vecII: Vec2F): Float =
+    Math.sqrt(Math.pow(x - vecII.x, 2) + Math.pow(y - vecII.y, 2)).toFloat
 }
 
 case class Vec2I(var x: Int, var y: Int) {

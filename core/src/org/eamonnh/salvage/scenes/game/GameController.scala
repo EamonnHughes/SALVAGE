@@ -2,8 +2,6 @@ package org.eamonnh.salvage.scenes.game
 
 import com.badlogic.gdx.Input.Keys
 import com.badlogic.gdx.InputAdapter
-import org.eamonnh.salvage.actors.ships.components.{MKI, MKII}
-import org.eamonnh.salvage.actors.ships.{Carc, Corv}
 import org.eamonnh.salvage.zoom
 
 class GameController(game: Game) extends InputAdapter {
@@ -16,7 +14,12 @@ class GameController(game: Game) extends InputAdapter {
     true
   }
 
-  override def touchUp(screenX: Int, screenY: Int, pointer: Int, button: Int): Boolean = {
+  override def touchUp(
+      screenX: Int,
+      screenY: Int,
+      pointer: Int,
+      button: Int
+  ): Boolean = {
     game.menu.foreach(_.items.foreach(_.update(game)))
     true
   }

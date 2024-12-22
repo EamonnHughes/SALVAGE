@@ -3,8 +3,8 @@ package org.eamonnh.salvage.generation
 import org.eamonnh.salvage.actors.Actor
 import org.eamonnh.salvage.actors.planets.cities.{City, CityI}
 import org.eamonnh.salvage.actors.planets.{BarrenSmall, MoonTiny, Planet}
-import org.eamonnh.salvage.actors.ships.{Carc, Corv, Ship, Vasa}
-import org.eamonnh.salvage.actors.ships.components.{Convoy, MKI, MKII, Tokamak}
+import org.eamonnh.salvage.actors.ships.components.{Convoy, MKII, Tokamak}
+import org.eamonnh.salvage.actors.ships.{Corv, Ship, Vasa}
 import org.eamonnh.salvage.actors.stations.{Outpost, Station}
 import org.eamonnh.salvage.actors.suns.{Sun, SunI}
 import org.eamonnh.salvage.crew.Officer
@@ -27,7 +27,7 @@ object Generator {
     val escortOne = new Ship
     escortOne.arch = new Corv
     escortOne.engine = new MKII
-    escortOne.location = Vec2F(player.location.x,  player.location.y + 5)
+    escortOne.location = Vec2F(player.location.x, player.location.y + 5)
     escortOne.behavior = Some(new Convoy(player))
     escortOne.captain = new Officer()
     escortOne.captain.name = "Baldanders"
@@ -63,7 +63,7 @@ object Generator {
     planetOne.orbitalPeriod = 2000
     planetOne.name = "New Terra"
     var rots = (Math.random() * 100).toInt
-    for(i <- 0 until rots) {
+    for (i <- 0 until rots) {
       planetOne.lifetime += rots
       planetOne.orbitUpdate()
     }
@@ -78,7 +78,7 @@ object Generator {
     moonOne.orbitalPeriod = 500
     moonOne.name = "Qamr"
     var rots = (Math.random() * 100).toInt
-    for(i <- 0 until rots) {
+    for (i <- 0 until rots) {
       moonOne.lifetime += rots
       moonOne.orbitUpdate()
     }
@@ -93,7 +93,7 @@ object Generator {
     stationOne.orbitalPeriod = -50
     stationOne.name = "Autonomous Data Unit I"
     var rots = (Math.random() * 100).toInt
-    for(i <- 0 until rots) {
+    for (i <- 0 until rots) {
       stationOne.lifetime += rots
       stationOne.orbitUpdate()
     }

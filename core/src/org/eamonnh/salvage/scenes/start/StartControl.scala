@@ -1,6 +1,5 @@
 package org.eamonnh.salvage.scenes.start
 
-import com.badlogic.gdx.Input.Keys
 import com.badlogic.gdx.InputAdapter
 
 class StartControl(start: Start) extends InputAdapter {
@@ -13,7 +12,12 @@ class StartControl(start: Start) extends InputAdapter {
     true
   }
 
-  override def touchUp(screenX: Int, screenY: Int, pointer: Int, button: Int): Boolean = {
+  override def touchUp(
+      screenX: Int,
+      screenY: Int,
+      pointer: Int,
+      button: Int
+  ): Boolean = {
     start.menu.foreach(_.items.foreach(_.update(start)))
     true
   }
