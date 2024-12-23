@@ -16,12 +16,12 @@ class AnchorageMenu(scene: Scene) extends Menu(scene) {
 class Background extends MenuItem {
 
   override def draw(batch: PolygonSpriteBatch): Unit = {
-    batch.setColor(0f, 0f, 0f, .7f)
+    batch.setColor(.2f, .2f, .2f, .7f)
     batch.draw(
       Salvage.Square,
+      Geometry.MenuStart.x + (screenUnit * 2),
       screenUnit * 2,
-      screenUnit * 2,
-      Geometry.ScreenWidth - (screenUnit * 4),
+      Geometry.ScreenHeight - (screenUnit * 4),
       Geometry.ScreenHeight - (screenUnit * 4)
     )
     batch.setColor(Color.WHITE)
@@ -40,7 +40,7 @@ class LeaveButton extends Button {
     )
   }
 
-  var location: Vec2F = Vec2F((Geometry.ScreenWidth / screenUnit) - 9, 3)
+  var location: Vec2F = Vec2F((Geometry.MenuEnd.x / screenUnit) - 9, 3)
   var size: Vec2F = Vec2F(6, 2)
   override var color: Color = Color.GREEN
 
