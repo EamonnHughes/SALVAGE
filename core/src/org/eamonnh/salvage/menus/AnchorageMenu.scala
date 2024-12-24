@@ -2,7 +2,7 @@ package org.eamonnh.salvage.menus
 
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.g2d.PolygonSpriteBatch
-import org.eamonnh.salvage.Salvage.{Square, garbage, spaceBG}
+import org.eamonnh.salvage.Salvage.{Square, spaceBG}
 import org.eamonnh.salvage.actors.Anchorage
 import org.eamonnh.salvage.actors.planets.Planet
 import org.eamonnh.salvage.actors.planets.cities.City
@@ -16,7 +16,11 @@ class AnchorageMenu(scene: Scene) extends Menu(scene) {
   override var items: List[MenuItem] = {
     scene match {
       case game: Game => {
-        List(new Background, new LeaveButton, new AnchorageView(game.player.anchorage.head))
+        List(
+          new Background,
+          new LeaveButton,
+          new AnchorageView(game.player.anchorage.head)
+        )
       }
       case default => List.empty
     }
@@ -50,23 +54,34 @@ class AnchorageView(anchorage: Anchorage) extends MenuItem {
       case city: City => {
         city.parent match {
           case planet: Planet => bgPic = planet.pClass.view
-          case default => bgPic = spaceBG
+          case default        => bgPic = spaceBG
         }
         fgPic = city.cityType.view
-    }
+      }
       case station: Station => {
         fgPic = station.arch.view
         bgPic = spaceBG
       }
     }
     var pics: List[TextureWrapper] = List(spaceBG, bgPic, fgPic)
-    pics.foreach(pic => batch.draw(
-      pic,
-      ((Geometry.ScreenWidth / (screenUnit * 2)) - 8) * screenUnit,
-      ((Geometry.ScreenHeight / (screenUnit * 2)) + 5) * screenUnit,
-      screenUnit * 16,
-      screenUnit * 8,
-    ))
+    batch.setColor(.3f, .3f, .3f, 1f)
+    batch.draw(
+      Salvage.Square,
+      ((Geometry.ScreenWidth / (screenUnit * 2)) - 9) * screenUnit,
+      ((Geometry.ScreenHeight / (screenUnit * 2)) + 4) * screenUnit,
+      screenUnit * 18,
+      screenUnit * 10
+    )
+    batch.setColor(Color.WHITE)
+    pics.foreach(pic =>
+      batch.draw(
+        pic,
+        ((Geometry.ScreenWidth / (screenUnit * 2)) - 8) * screenUnit,
+        ((Geometry.ScreenHeight / (screenUnit * 2)) + 5) * screenUnit,
+        screenUnit * 16,
+        screenUnit * 8
+      )
+    )
   }
   override def update(scene: Scene): Unit = {}
 }
