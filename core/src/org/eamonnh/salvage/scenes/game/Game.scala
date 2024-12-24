@@ -59,16 +59,15 @@ class Game extends Scene {
     Generator.game = this
 
     Generator.generateSolarSystem(Vec2F(0, 0))
-    Generator.generatePlayer()
-    for (i <- 0 until 40) {
-      Generator.generateTrader()
-    }
-
-    actors.foreach(m => m.init(this))
     actors.foreach {
       case orbital: Orbital => orbital.orbitInit()
       case default          =>
     }
+    Generator.generatePlayer()
+    for (i <- 0 until 7) {
+      Generator.generateTrader()
+    }
+    actors.foreach(m => m.init(this))
     new GameController(this)
   }
 

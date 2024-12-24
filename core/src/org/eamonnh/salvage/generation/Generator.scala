@@ -1,7 +1,7 @@
 package org.eamonnh.salvage.generation
 
 import org.eamonnh.salvage.actors.Actor
-import org.eamonnh.salvage.actors.planets.cities.{City, CityI, PolarFortressI}
+import org.eamonnh.salvage.actors.planets.cities.{City, CityI, CityII, CityType, PolarFortressI}
 import org.eamonnh.salvage.actors.planets.{BarrenSmall, MoonTiny, Planet}
 import org.eamonnh.salvage.actors.ships.behavior.{Convoy, Trader}
 import org.eamonnh.salvage.actors.ships.components.{MKI, MKII, Tokamak}
@@ -70,12 +70,13 @@ object Generator {
     val planetOne = makePlanet(sun)
     val moonOne = makeMoon(planetOne)
     val stationOne = makeStation(planetOne)
-    val cityOne = makeCity(planetOne)
-    val fortressOne = makeFortress(planetOne)
+    val planetCityOne = makeCity(planetOne, new CityI, Vec2F(-3, 3), "Riyadh A-thani")
+    val planetFortressOne = makeCity(planetOne, new PolarFortressI, Vec2F(0, 16), "Kasbah A-shimal")
+    val moonCityOne = makeCity(moonOne, new CityII, Vec2F(1, 0), "Medinat I-qamr")
     game.suns = sun :: game.suns
     game.planets = planetOne :: moonOne :: game.planets
     game.stations = stationOne :: game.stations
-    game.cities = cityOne :: fortressOne :: game.cities
+    game.cities = planetCityOne :: planetFortressOne :: moonCityOne :: game.cities
   }
 
   def makeSun(location: Vec2F): Sun = {
@@ -131,21 +132,12 @@ object Generator {
     stationOne
   }
 
-  def makeCity(actor: Actor): City = {
+  def makeCity(actor: Actor, cType: CityType, location: Vec2F, name: String): City = {
     val cityOne = new City
     cityOne.parent = actor
-    cityOne.cityType = new CityI
-    cityOne.relativePosition = Vec2I(-3, -3)
-    cityOne.name = "Riyadh A-thani"
-    return cityOne
-  }
-
-  def makeFortress(actor: Actor): City = {
-    val cityOne = new City
-    cityOne.parent = actor
-    cityOne.cityType = new PolarFortressI
-    cityOne.relativePosition = Vec2I(0, 16)
-    cityOne.name = "Qasbah A-shimal"
+    cityOne.cityType = cType
+    cityOne.relativePosition = location
+    cityOne.name = "name"
     return cityOne
   }
 }
