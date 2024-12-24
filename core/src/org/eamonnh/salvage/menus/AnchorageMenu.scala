@@ -67,10 +67,10 @@ class AnchorageView(anchorage: Anchorage) extends MenuItem {
     batch.setColor(.3f, .3f, .3f, 1f)
     batch.draw(
       Salvage.Square,
-      ((Geometry.ScreenWidth / (screenUnit * 2)) - 9) * screenUnit,
-      ((Geometry.ScreenHeight / (screenUnit * 2)) + 4) * screenUnit,
-      screenUnit * 18,
-      screenUnit * 10
+      ((Geometry.ScreenWidth / (screenUnit * 2)) - 8.5f) * screenUnit,
+      ((Geometry.ScreenHeight / (screenUnit * 2)) + 4.5f) * screenUnit,
+      screenUnit * 17,
+      screenUnit * 9
     )
     batch.setColor(Color.WHITE)
     pics.foreach(pic =>
