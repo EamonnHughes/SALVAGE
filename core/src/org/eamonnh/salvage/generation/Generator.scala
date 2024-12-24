@@ -1,7 +1,7 @@
 package org.eamonnh.salvage.generation
 
 import org.eamonnh.salvage.actors.Actor
-import org.eamonnh.salvage.actors.planets.cities.{City, CityI}
+import org.eamonnh.salvage.actors.planets.cities.{City, CityI, PolarFortressI}
 import org.eamonnh.salvage.actors.planets.{BarrenSmall, MoonTiny, Planet}
 import org.eamonnh.salvage.actors.ships.behavior.{Convoy, Trader}
 import org.eamonnh.salvage.actors.ships.components.{MKI, MKII, Tokamak}
@@ -69,12 +69,13 @@ object Generator {
     val sun = makeSun(location)
     val planetOne = makePlanet(sun)
     val moonOne = makeMoon(planetOne)
-    val stationOne = makeStation(moonOne)
+    val stationOne = makeStation(planetOne)
     val cityOne = makeCity(planetOne)
+    val fortressOne = makeFortress(planetOne)
     game.suns = sun :: game.suns
     game.planets = planetOne :: moonOne :: game.planets
     game.stations = stationOne :: game.stations
-    game.cities = cityOne :: game.cities
+    game.cities = cityOne :: fortressOne :: game.cities
   }
 
   def makeSun(location: Vec2F): Sun = {
@@ -119,7 +120,7 @@ object Generator {
     val stationOne = new Station
     stationOne.arch = new Outpost
     stationOne.parent = Some(parent)
-    stationOne.distanceOut = 6
+    stationOne.distanceOut = 24
     stationOne.orbitalPeriod = -50
     stationOne.name = "Autonomous Unit " + (Math.random() * 100).toInt
     var rots = (Math.random() * 100).toInt
@@ -134,9 +135,17 @@ object Generator {
     val cityOne = new City
     cityOne.parent = actor
     cityOne.cityType = new CityI
-    cityOne.relativePosition = Vec2I(5, 5)
+    cityOne.relativePosition = Vec2I(-3, -3)
     cityOne.name = "Riyadh A-thani"
     return cityOne
   }
 
+  def makeFortress(actor: Actor): City = {
+    val cityOne = new City
+    cityOne.parent = actor
+    cityOne.cityType = new PolarFortressI
+    cityOne.relativePosition = Vec2I(0, 16)
+    cityOne.name = "Qasbah A-shimal"
+    return cityOne
+  }
 }
