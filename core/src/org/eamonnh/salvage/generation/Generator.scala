@@ -20,8 +20,8 @@ object Generator {
     var player = new Player
     player.name = "Tzadkiel"
     player.location = game.stations.head.location.copy()
-    player.arch = new Vasa
-    player.engine = new Tokamak
+    player.arch = new Corv
+    player.engine = new MKII
     player.captain = new Officer
     player.captain.name = "Severian"
     player.captain.credits = 100

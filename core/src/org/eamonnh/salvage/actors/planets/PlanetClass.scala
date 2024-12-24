@@ -21,5 +21,5 @@ class MoonTiny extends PlanetClass {
 
   override var sprite: TextureWrapper = TextureWrapper.load("MoonTiny.png")
   override var size: Vec2I = Vec2I(8, 8)
-  override var view: TextureWrapper = TextureWrapper.load("SpaceCityBackground.png")
+  override var view: TextureWrapper = TextureWrapper.load("MoonCityBackground.png")
 }
