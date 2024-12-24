@@ -2,21 +2,32 @@ package org.eamonnh.salvage.menus
 
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.g2d.PolygonSpriteBatch
-import org.eamonnh.salvage.Salvage.Square
+import org.eamonnh.salvage.Salvage.{Square, garbage, spaceBG}
+import org.eamonnh.salvage.actors.Anchorage
+import org.eamonnh.salvage.actors.planets.Planet
+import org.eamonnh.salvage.actors.planets.cities.City
+import org.eamonnh.salvage.actors.stations.Station
 import org.eamonnh.salvage.scenes.game.Game
 import org.eamonnh.salvage.util.{TextureWrapper, Vec2F}
 import org.eamonnh.salvage.{Geometry, Salvage, Scene, Text, screenUnit}
 
 class AnchorageMenu(scene: Scene) extends Menu(scene) {
 
-  override var items: List[MenuItem] = List(new Background, new LeaveButton)
+  override var items: List[MenuItem] = {
+    scene match {
+      case game: Game => {
+        List(new Background, new LeaveButton, new AnchorageView(game.player.anchorage.head))
+      }
+      case default => List.empty
+    }
+  }
   override var subMenu: Option[Menu] = None
 }
 
 class Background extends MenuItem {
 
   override def draw(batch: PolygonSpriteBatch): Unit = {
-    batch.setColor(.2f, .2f, .2f, .7f)
+    batch.setColor(.2f, .2f, .2f, 1f)
     batch.draw(
       Salvage.Square,
       Geometry.MenuStart.x + (screenUnit * 2),
@@ -27,6 +38,36 @@ class Background extends MenuItem {
     batch.setColor(Color.WHITE)
   }
 
+  override def update(scene: Scene): Unit = {}
+}
+
+class AnchorageView(anchorage: Anchorage) extends MenuItem {
+  var location: Vec2F = Vec2F((Geometry.MenuEnd.x / screenUnit) - 9, 3)
+  override def draw(batch: PolygonSpriteBatch): Unit = {
+    var bgPic: TextureWrapper = null
+    var fgPic: TextureWrapper = null
+    anchorage match {
+      case city: City => {
+        city.parent match {
+          case planet: Planet => bgPic = planet.pClass.view
+          case default => bgPic = spaceBG
+        }
+        fgPic = city.cityType.view
+    }
+      case station: Station => {
+        fgPic = station.arch.view
+        bgPic = spaceBG
+      }
+    }
+    var pics: List[TextureWrapper] = List(spaceBG, bgPic, fgPic)
+    pics.foreach(pic => batch.draw(
+      pic,
+      ((Geometry.ScreenWidth / (screenUnit * 2)) - 8) * screenUnit,
+      ((Geometry.ScreenHeight / (screenUnit * 2)) + 5) * screenUnit,
+      screenUnit * 16,
+      screenUnit * 8,
+    ))
+  }
   override def update(scene: Scene): Unit = {}
 }
 

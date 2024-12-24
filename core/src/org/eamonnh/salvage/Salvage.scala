@@ -26,6 +26,7 @@ class Salvage extends ApplicationAdapter {
 
     Salvage.Square = TextureWrapper.load("Square.png")
     Salvage.Circle = TextureWrapper.load("Circle.png")
+    Salvage.spaceBG = TextureWrapper.load("SpaceCityBackground.png")
 
     //    Salvage.sound = Salvage.loadSound("triangle.mp3")
 
@@ -63,6 +64,7 @@ object Salvage {
   var sound: Sound = _
   var Square: TextureWrapper = _
   var Circle: TextureWrapper = _
+  var spaceBG: TextureWrapper = _
 
   def mobile: Boolean = isMobile(Gdx.app.getType)
 
