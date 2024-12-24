@@ -22,8 +22,8 @@ abstract class Actor {
     sprites.foreach(sprite => {
       batch.draw(
         sprite,
-        (location.x - (size.x / 2)) * screenUnit,
-        (location.y - (size.y / 2)) * screenUnit,
+        (location.x - (size.x.toFloat / 2)) * screenUnit,
+        (location.y - (size.y.toFloat / 2)) * screenUnit,
         size.x * screenUnit / 2,
         size.y * screenUnit / 2,
         size.x * screenUnit,
