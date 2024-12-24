@@ -2,7 +2,7 @@ package org.eamonnh.salvage.generation
 
 import org.eamonnh.salvage.actors.Actor
 import org.eamonnh.salvage.actors.planets.cities.{City, CityI, CityII, CityType, PolarFortressI}
-import org.eamonnh.salvage.actors.planets.{BarrenSmall, MoonTiny, Planet}
+import org.eamonnh.salvage.actors.planets.{BarrenSmall, EarthlikeMedium, MoonTiny, Planet, PlanetClass}
 import org.eamonnh.salvage.actors.ships.behavior.{Convoy, Trader}
 import org.eamonnh.salvage.actors.ships.components.{MKI, MKII, Tokamak}
 import org.eamonnh.salvage.actors.ships.{Carc, Corv, Destroyer, Fighter, Ship, Vasa}
@@ -67,14 +67,15 @@ object Generator {
 
   def generateSolarSystem(location: Vec2F): Unit = {
     val sun = makeSun(location)
-    val planetOne = makePlanet(sun)
-    val moonOne = makeMoon(planetOne)
+    val planetOne = makePlanet(sun, new BarrenSmall, 256, 2000, "Araby")
+    val moonOne = makePlanet(planetOne, new MoonTiny, 48, 500, "Qamr")
+    val planetTwo = makePlanet(sun, new EarthlikeMedium, 512, 4000, "Terra Nova")
     val stationOne = makeStation(planetOne)
     val planetCityOne = makeCity(planetOne, new CityI, Vec2F(-3, 3), "Riyadh A-thani")
     val planetFortressOne = makeCity(planetOne, new PolarFortressI, Vec2F(0, 16), "Kasbah A-shimal")
     val moonCityOne = makeCity(moonOne, new CityII, Vec2F(1, 0), "Medinat I-qamr")
     game.suns = sun :: game.suns
-    game.planets = planetOne :: moonOne :: game.planets
+    game.planets = planetOne :: moonOne :: planetTwo :: game.planets
     game.stations = stationOne :: game.stations
     game.cities = planetCityOne :: planetFortressOne :: moonCityOne :: game.cities
   }
@@ -87,36 +88,18 @@ object Generator {
     sunOne
   }
 
-  def makePlanet(parent: Actor): Planet = {
+  def makePlanet(parent: Actor, planetClass: PlanetClass, distance: Int, period: Int, name: String): Planet = {
     val planetOne = new Planet
-    planetOne.pClass = new BarrenSmall
+    planetOne.pClass = planetClass
     planetOne.parent = Some(parent)
-    planetOne.distanceOut = 256
-    planetOne.orbitalPeriod = 2000
-    planetOne.name = "New Terra"
-    var rots = (Math.random() * 100).toInt
-    for (i <- 0 until rots) {
-      planetOne.lifetime += rots
-      planetOne.orbitUpdate()
-    }
+    planetOne.distanceOut = distance
+    planetOne.orbitalPeriod = period
+    planetOne.name = name
+    var rots = (Math.random() * 1000).toInt
+    planetOne.lifetime = rots
+    planetOne.orbitUpdate()
     planetOne
   }
-
-  def makeMoon(parent: Actor): Planet = {
-    val moonOne = new Planet
-    moonOne.pClass = new MoonTiny
-    moonOne.parent = Some(parent)
-    moonOne.distanceOut = 48
-    moonOne.orbitalPeriod = 500
-    moonOne.name = "Qamr"
-    var rots = (Math.random() * 100).toInt
-    for (i <- 0 until rots) {
-      moonOne.lifetime += rots
-      moonOne.orbitUpdate()
-    }
-    moonOne
-  }
-
   def makeStation(parent: Actor): Station = {
     val stationOne = new Station
     stationOne.arch = new Outpost

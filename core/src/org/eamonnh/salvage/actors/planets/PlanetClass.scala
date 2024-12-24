@@ -9,6 +9,14 @@ abstract class PlanetClass {
   var view: TextureWrapper
 }
 
+class EarthlikeMedium extends PlanetClass {
+
+  override var sprite: TextureWrapper =
+    TextureWrapper.load("EarthlikePlanetMedium.png")
+  override var size: Vec2I = Vec2I(48, 48)
+  override var view: TextureWrapper = TextureWrapper.load("BarrenCityBackground.png")
+}
+
 class BarrenSmall extends PlanetClass {
 
   override var sprite: TextureWrapper =
