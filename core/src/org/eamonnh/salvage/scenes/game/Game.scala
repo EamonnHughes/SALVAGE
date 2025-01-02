@@ -5,8 +5,8 @@ import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.g2d.PolygonSpriteBatch
 import com.badlogic.gdx.math.Matrix4
 import org.eamonnh.salvage._
+import org.eamonnh.salvage.actors.cities.City
 import org.eamonnh.salvage.actors.planets.Planet
-import org.eamonnh.salvage.actors.planets.cities.City
 import org.eamonnh.salvage.actors.ships.Ship
 import org.eamonnh.salvage.actors.stations.Station
 import org.eamonnh.salvage.actors.suns.Sun

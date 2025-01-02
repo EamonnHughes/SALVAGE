@@ -1,3 +1,7 @@
 package org.eamonnh.salvage.actors
 
-trait Anchorage extends Actor
+import org.eamonnh.salvage.actors.ships.Ship
+
+trait Anchorage extends Actor {
+  var canLand: Ship => Boolean
+}

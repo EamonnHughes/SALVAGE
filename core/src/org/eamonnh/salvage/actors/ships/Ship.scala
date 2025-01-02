@@ -74,8 +74,11 @@ class Ship extends Actor {
   def TryToLand(game: Game): Unit = {
     if (
       game.actors.exists(a =>
-        a.isInstanceOf[Anchorage] && a.location
-          .distanceFrom(location) < a.size.x.toFloat + .25f
+        a match {
+          case anchorage: Anchorage =>
+            anchorage.location.distanceFrom(location) < anchorage.size.x.toFloat + .25f && anchorage.canLand(this)
+          case default => false
+        }
       )
     ) {
       anchorage = Some(

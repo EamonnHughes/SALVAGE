@@ -1,5 +1,6 @@
-package org.eamonnh.salvage.actors.planets.cities
+package org.eamonnh.salvage.actors.cities
 
+import org.eamonnh.salvage.actors.ships.Ship
 import org.eamonnh.salvage.actors.{Actor, Anchorage}
 import org.eamonnh.salvage.scenes.game.Game
 import org.eamonnh.salvage.util.{TextureWrapper, Vec2F, Vec2I}
@@ -19,4 +20,6 @@ class City extends Actor with Anchorage {
   }
 
   override def init(game: Game): Unit = {}
+
+  override var canLand: Ship => Boolean = (s: Ship) => true
 }

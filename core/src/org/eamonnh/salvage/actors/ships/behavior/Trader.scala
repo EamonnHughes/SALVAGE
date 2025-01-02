@@ -11,7 +11,7 @@ class Trader extends Behavior {
   override def update(ship: Ship, game: Game, delta: Float): Unit = {
     if (target.isEmpty) {
       target = Some(
-        game.anchorages((Math.random() * game.anchorages.length).toInt)
+        game.anchorages.filter(a => a.canLand(ship))((Math.random() * game.anchorages.count(a => a.canLand(ship))).toInt)
       )
     }
     if (ship.anchorage.nonEmpty) {
