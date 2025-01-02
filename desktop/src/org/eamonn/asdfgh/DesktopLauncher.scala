@@ -9,6 +9,7 @@ import com.badlogic.gdx.backends.lwjgl3.{
 object DesktopLauncher extends App {
   val config = new Lwjgl3ApplicationConfiguration
   config.setForegroundFPS(60)
-  config.setFullscreenMode(Lwjgl3ApplicationConfiguration.getDisplayMode)
+  config.setDecorated(false)
+  config.setWindowedMode(Lwjgl3ApplicationConfiguration.getDisplayMode.width, Lwjgl3ApplicationConfiguration.getDisplayMode.height)
   new Lwjgl3Application(new Salvage, config)
 }
