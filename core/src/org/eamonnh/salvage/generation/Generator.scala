@@ -72,13 +72,12 @@ object Generator {
     val planetTwo = makePlanet(sun, new EarthlikeMedium, 512, 4000, "Terra Nova")
     val stationOne = makeStation(planetOne)
     val planetCityOne = makeCity(planetOne, new CityI, Vec2F(4f, 2f), "Riyadh A-thani")
-    val planet2CityOne = makeCity(planetTwo, new CityI, Vec2F(-4f, -5f), "Qom")
     val planetFortressOne = makeCity(planetOne, new PolarFortressI, Vec2F(0, 16), "Kasbah A-shimal")
     val moonCityOne = makeCity(moonOne, new CityII, Vec2F(1, 0), "Medinat I-qamr")
     game.suns = sun :: game.suns
     game.planets = planetOne :: moonOne :: planetTwo :: game.planets
     game.stations = stationOne :: game.stations
-    game.cities = planetCityOne :: planetFortressOne :: moonCityOne :: planet2CityOne :: game.cities
+    game.cities = planetCityOne :: planetFortressOne :: moonCityOne :: game.cities
   }
 
   def makeSun(location: Vec2F): Sun = {
