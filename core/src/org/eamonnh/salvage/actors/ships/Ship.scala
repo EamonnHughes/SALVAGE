@@ -75,7 +75,7 @@ class Ship extends Actor {
     if (
       game.actors.exists(a =>
         a.isInstanceOf[Anchorage] && a.location
-          .distanceFrom(location) < a.size.x.toFloat * 2 / 3
+          .distanceFrom(location) < a.size.x.toFloat + .25f
       )
     ) {
       anchorage = Some(

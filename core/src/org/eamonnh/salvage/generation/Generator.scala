@@ -1,7 +1,7 @@
 package org.eamonnh.salvage.generation
 
 import org.eamonnh.salvage.actors.Actor
-import org.eamonnh.salvage.actors.planets.cities.{City, CityI, CityII, CityType, PolarFortressI}
+import org.eamonnh.salvage.actors.planets.cities.{City, CityI, CityII, CityType, PolarFortressI, Vault}
 import org.eamonnh.salvage.actors.planets.{BarrenSmall, EarthlikeMedium, MoonTiny, Planet, PlanetClass}
 import org.eamonnh.salvage.actors.ships.behavior.{Convoy, Trader}
 import org.eamonnh.salvage.actors.ships.components.{MKI, MKII, Tokamak}
@@ -74,10 +74,11 @@ object Generator {
     val planetCityOne = makeCity(planetOne, new CityI, Vec2F(4f, 2f), "Riyadh A-thani")
     val planetFortressOne = makeCity(planetOne, new PolarFortressI, Vec2F(0, 16), "Kasbah A-shimal")
     val moonCityOne = makeCity(moonOne, new CityII, Vec2F(1, 0), "Medinat I-qamr")
+    val vaultOne = makeCity(planetOne, new Vault, Vec2F(-1.5f, 1.5f), "Abandoned Vault")
     game.suns = sun :: game.suns
     game.planets = planetOne :: moonOne :: planetTwo :: game.planets
     game.stations = stationOne :: game.stations
-    game.cities = planetCityOne :: planetFortressOne :: moonCityOne :: game.cities
+    game.cities = planetCityOne :: planetFortressOne :: moonCityOne :: vaultOne :: game.cities
   }
 
   def makeSun(location: Vec2F): Sun = {

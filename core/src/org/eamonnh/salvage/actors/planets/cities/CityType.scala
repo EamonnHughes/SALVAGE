@@ -26,3 +26,10 @@ class PolarFortressI extends CityType {
   override var sprite: TextureWrapper = TextureWrapper.load("PolarFortress1.png")
   override var view: TextureWrapper = TextureWrapper.load("PolarFortress1Picture.png")
 }
+
+
+class Vault extends CityType {
+  override var size: Vec2I = Vec2I(1, 1)
+  override var sprite: TextureWrapper = TextureWrapper.load("Vault.png")
+  override var view: TextureWrapper = TextureWrapper.load("VaultPicture.png")
+}
