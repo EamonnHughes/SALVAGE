@@ -71,7 +71,7 @@ object Generator {
     val moonOne = makePlanet(planetOne, new MoonTiny, 48, 500, "Qamr")
     val planetTwo = makePlanet(sun, new EarthlikeMedium, 512, 4000, "Terra Nova")
     val stationOne = makeStation(planetOne)
-    val planetCityOne = makeCity(planetOne, new CityI, Vec2F(4f, 2f), "Riyadh A-thani")
+    val planetCityOne = makeCity(planetOne, new CityI, Vec2F(4f, -6f), "Riyadh A-thani")
     val planetFortressOne = makeCity(planetOne, new PolarFortressI, Vec2F(0, 16), "Kasbah A-shimal")
     val moonCityOne = makeCity(moonOne, new CityII, Vec2F(1, 0), "Medinat I-qamr")
     val vaultOne = makeCity(planetOne, new Vault, Vec2F(-1.5f, 1.5f), "Abandoned Vault")
