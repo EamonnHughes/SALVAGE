@@ -12,30 +12,34 @@ class Player extends Ship {
     .minBy(a => a.location.distanceFrom(location))
 
   def playerUpdate(game: Game, delta: Float): Unit = {
-    if (GameTriggers.Forward) {
-      if (GameTriggers.Shift) {
-        movingFullSpeed = true
+    if(tryingToLand) {
+      tryToLand(game)
+    } else {
+      if (GameTriggers.Forward) {
+        if (GameTriggers.Shift) {
+          movingFullSpeed = true
+        } else {
+          movingSlower = true
+        }
       } else {
-        movingSlower = true
+        movingSlower = false
+        movingFullSpeed = false
       }
-    } else {
-      movingSlower = false
-      movingFullSpeed = false
-    }
-    if (GameTriggers.Right) {
-      rotatingRight = true
-      rotatingLeft = false
-    } else if (GameTriggers.Left) {
-      rotatingLeft = true
-      rotatingRight = false
-    } else {
-      rotatingRight = false
-      rotatingLeft = false
+      if (GameTriggers.Right) {
+        rotatingRight = true
+        rotatingLeft = false
+      } else if (GameTriggers.Left) {
+        rotatingLeft = true
+        rotatingRight = false
+      } else {
+        rotatingRight = false
+        rotatingLeft = false
+      }
     }
   }
   def playerKeyUps(keycode: Int, game: Game): Unit = {
     if (keycode == Keys.L) {
-      TryToLand(game)
+      tryingToLand = true
     }
   }
 }

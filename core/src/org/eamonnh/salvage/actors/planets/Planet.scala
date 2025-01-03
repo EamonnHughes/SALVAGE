@@ -11,7 +11,7 @@ class Planet extends Actor with Orbital {
   override var orbitalPeriod: Float = _
 
   var pClass: PlanetClass = _
-  override def size = pClass.size
+  override def baseSize = pClass.size
 
   override def sprites: List[TextureWrapper] = List(pClass.sprite)
 

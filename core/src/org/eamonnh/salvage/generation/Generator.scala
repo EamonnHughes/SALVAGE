@@ -75,7 +75,7 @@ object Generator {
     val planetFortressOne = makeCity(planetOne, new PolarFortressI, Vec2F(0, 16), "Kasbah A-shimal")
     val moonCityOne = makeCity(moonOne, new CityII, Vec2F(1, 0), "Medinat I-qamr")
     val vaultOne = makeCity(planetOne, new Vault, Vec2F(-1.5f, 1.5f), "Abandoned Vault")
-    vaultOne.canLand = (s: Ship) => game.player eq s
+    vaultOne.canLand = (s: Ship) => s.isInstanceOf[Player]
     game.suns = sun :: game.suns
     game.planets = planetOne :: moonOne :: planetTwo :: game.planets
     game.stations = stationOne :: game.stations

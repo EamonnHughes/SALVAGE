@@ -15,26 +15,28 @@ abstract class Actor {
   var rotVel: Float = 0
   var forwardAcc: Float = 0
   def deRotAccel: Float = .5f
-  def size: Vec2I = Vec2I(0, 0)
+  def baseSize: Vec2I = Vec2I(0, 0)
+  var scale = 1f
+  def scaledSize: Vec2F = Vec2F(baseSize.x * scale, baseSize.y * scale)
   var rotation: Float = 0
   def sprites: List[TextureWrapper]
   def draw(batch: PolygonSpriteBatch): Unit = {
     sprites.foreach(sprite => {
       batch.draw(
         sprite,
-        (location.x - (size.x.toFloat / 2)) * screenUnit,
-        (location.y - (size.y.toFloat / 2)) * screenUnit,
-        size.x * screenUnit / 2,
-        size.y * screenUnit / 2,
-        size.x * screenUnit,
-        size.y * screenUnit,
+        (location.x - (scaledSize.x.toFloat / 2)) * screenUnit,
+        (location.y - (scaledSize.y.toFloat / 2)) * screenUnit,
+        scaledSize.x * screenUnit / 2,
+        scaledSize.y * screenUnit / 2,
+        scaledSize.x * screenUnit,
+        scaledSize.y * screenUnit,
         1,
         1,
         ((rotation / (Math.PI * 2)) * 360).toInt,
         0,
         0,
-        size.x * 16,
-        size.y * 16,
+        baseSize.x * 16,
+        baseSize.y * 16,
         false,
         false
       )

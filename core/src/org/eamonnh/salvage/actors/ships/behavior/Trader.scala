@@ -29,7 +29,7 @@ class Trader extends Behavior {
       }
     } else {
       if (ship.location.distanceFrom(target.head.location) < 5) {
-        ship.TryToLand(game)
+        ship.tryToLand(game)
       }
       def targetRot = {
         (Math.atan2(

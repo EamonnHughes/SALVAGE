@@ -13,7 +13,7 @@ class Station extends Actor with Orbital with Anchorage {
   override var orbitalPeriod: Float = _
   override var pointAt: Boolean = true
 
-  override def size = arch.size
+  override def baseSize = arch.size
 
   override def sprites: List[TextureWrapper] = List(arch.sprite)
 

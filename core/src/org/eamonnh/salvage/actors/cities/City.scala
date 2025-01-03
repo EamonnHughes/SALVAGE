@@ -10,7 +10,7 @@ class City extends Actor with Anchorage {
   var parent: Actor = _
   var cityType: CityType = _
   var relativePosition: Vec2F = _
-  override def size: Vec2I = cityType.size
+  override def baseSize: Vec2I = cityType.size
   override def sprites: List[TextureWrapper] = List(cityType.sprite)
   override def update(game: Game, delta: Float): Unit = {
     location = Vec2F(

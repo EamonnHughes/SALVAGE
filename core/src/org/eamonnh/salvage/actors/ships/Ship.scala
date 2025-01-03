@@ -18,13 +18,15 @@ class Ship extends Actor {
   var rotatingLeft: Boolean = false
   var cargo: List[Cargo] = List.empty
   var captain: Officer = _
+  var landing = false
+  var tryingToLand = false
 
   var anchorage: Option[Anchorage] = None
 
   override def deRotAccel = engine.turnDecel
   override def deAccel = arch.deAccel
   override def topSpeed = arch.topSpeed
-  override def size = arch.shipClass.size
+  override def baseSize = arch.shipClass.size
 
   override def sprites: List[TextureWrapper] =
     if (anchorage.isEmpty) List(engine.sprite, arch.sprite) else List.empty
@@ -39,6 +41,12 @@ class Ship extends Actor {
       })
     } else {
       DoPhysics()
+      if(!landing && scale < 1) {
+        scale += .05f
+      }
+      if(scale > 1){
+        scale = 1f
+      }
     }
   }
 
@@ -71,21 +79,30 @@ class Ship extends Actor {
     rotVel *= deRotAccel
   }
 
-  def TryToLand(game: Game): Unit = {
+  def tryToLand(game: Game): Unit = {
     if (
       game.actors.exists(a =>
         a match {
           case anchorage: Anchorage =>
-            anchorage.location.distanceFrom(location) < anchorage.size.x.toFloat + .25f && anchorage.canLand(this)
+            anchorage.location.distanceFrom(location) < anchorage.baseSize.x.toFloat + .25f && anchorage.canLand(this)
           case default => false
         }
       )
     ) {
-      anchorage = Some(
-        game.actors
-          .collect({ case anchorage: Anchorage => anchorage })
-          .minBy(a => a.location.distanceFrom(location))
-      )
+      landing = true
+      scale -= .05f
+      if(scale <= .25f) {
+        landing = false
+        tryingToLand = false
+        anchorage = Some(
+          game.actors
+            .collect({ case anchorage: Anchorage => anchorage })
+            .minBy(a => a.location.distanceFrom(location))
+        )
+      }
+    } else {
+      tryingToLand = false
+      landing = false
     }
   }
 }
