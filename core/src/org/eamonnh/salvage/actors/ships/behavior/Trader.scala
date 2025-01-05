@@ -20,10 +20,9 @@ class Trader extends Behavior {
         ashoreTime = 0f
         ship.anchorage = None
         target = Some(
-          game.anchorages.filterNot(a => a eq target.head)(
+          game.anchorages.filterNot(a => a eq target.head).filter(a => a.canLand(ship))(
             (Math.random() * game.anchorages
-              .filterNot(_ eq target.head)
-              .length).toInt
+              .filterNot(_ eq target.head).count(a => a.canLand(ship))).toInt
           )
         )
       }
